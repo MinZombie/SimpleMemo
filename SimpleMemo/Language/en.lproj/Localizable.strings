@@ -5,3 +5,9 @@
   Created by 민선기 on 2022/01/17.
   
 */
+
+"NavigationTitle" = "Notes";
+"SettingTitle" = "Setting";
+"SearchPlaceholder" = "Search";
+"AddButtonSetTitle" = "Add";
+"TextViewPlaceholder" = "Please write your text here";

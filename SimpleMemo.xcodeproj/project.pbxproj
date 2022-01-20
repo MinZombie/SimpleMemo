@@ -14,6 +14,11 @@
 		A9818631279538C80030CED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9818630279538C80030CED1 /* Assets.xcassets */; };
 		A9818634279538C80030CED1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9818632279538C80030CED1 /* LaunchScreen.storyboard */; };
 		A981863E27953C210030CED1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A981864027953C210030CED1 /* Localizable.strings */; };
+		A98186672795665F0030CED1 /* GowunDodum-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A98186662795665F0030CED1 /* GowunDodum-Regular.ttf */; };
+		A9818669279576520030CED1 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818668279576520030CED1 /* MainTableViewCell.swift */; };
+		A981866B2795B02D0030CED1 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981866A2795B02D0030CED1 /* WriteViewController.swift */; };
+		A981866D2795B2390030CED1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981866C2795B2390030CED1 /* SettingViewController.swift */; };
+		A9D4EF7127998C99003C7231 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4EF7027998C99003C7231 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		A9818635279538C80030CED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A981863F27953C210030CED1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A981864127953C5C0030CED1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A98186662795665F0030CED1 /* GowunDodum-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GowunDodum-Regular.ttf"; path = "../../../Git_Test/GowunDodum-Regular.ttf"; sourceTree = "<group>"; };
+		A9818668279576520030CED1 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		A981866A2795B02D0030CED1 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		A981866C2795B2390030CED1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		A9D4EF7027998C99003C7231 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +69,7 @@
 		A9818626279538C70030CED1 /* SimpleMemo */ = {
 			isa = PBXGroup;
 			children = (
+				A98186652795660F0030CED1 /* Resource */,
 				A981864427953E9B0030CED1 /* View */,
 				A981864327953E930030CED1 /* Controller */,
 				A981864227953E760030CED1 /* Other */,
@@ -82,6 +93,7 @@
 				A9818627279538C70030CED1 /* AppDelegate.swift */,
 				A9818629279538C70030CED1 /* SceneDelegate.swift */,
 				A9818630279538C80030CED1 /* Assets.xcassets */,
+				A9D4EF7027998C99003C7231 /* Constants.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -90,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				A981862B279538C70030CED1 /* MainViewController.swift */,
+				A981866A2795B02D0030CED1 /* WriteViewController.swift */,
+				A981866C2795B2390030CED1 /* SettingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,8 +113,17 @@
 			children = (
 				A9818632279538C80030CED1 /* LaunchScreen.storyboard */,
 				A981862D279538C70030CED1 /* Main.storyboard */,
+				A9818668279576520030CED1 /* MainTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A98186652795660F0030CED1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A98186662795665F0030CED1 /* GowunDodum-Regular.ttf */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +188,7 @@
 				A9818634279538C80030CED1 /* LaunchScreen.storyboard in Resources */,
 				A981863E27953C210030CED1 /* Localizable.strings in Resources */,
 				A9818631279538C80030CED1 /* Assets.xcassets in Resources */,
+				A98186672795665F0030CED1 /* GowunDodum-Regular.ttf in Resources */,
 				A981862F279538C70030CED1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,7 +202,11 @@
 			files = (
 				A981862C279538C70030CED1 /* MainViewController.swift in Sources */,
 				A9818628279538C70030CED1 /* AppDelegate.swift in Sources */,
+				A9818669279576520030CED1 /* MainTableViewCell.swift in Sources */,
+				A981866B2795B02D0030CED1 /* WriteViewController.swift in Sources */,
+				A9D4EF7127998C99003C7231 /* Constants.swift in Sources */,
 				A981862A279538C70030CED1 /* SceneDelegate.swift in Sources */,
+				A981866D2795B2390030CED1 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
