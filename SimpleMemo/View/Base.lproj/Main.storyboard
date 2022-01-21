@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LA-Jn-QZB">
-                                <rect key="frame" x="16" y="780" width="382" height="42"/>
+                                <rect key="frame" x="16" y="804" width="382" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="8YQ-hX-BcS"/>
                                 </constraints>
@@ -271,7 +271,7 @@
                             <constraint firstItem="7ok-vy-sYC" firstAttribute="leading" secondItem="IVb-e4-cEj" secondAttribute="leading" constant="20" id="edQ-FR-x7w"/>
                             <constraint firstItem="7ok-vy-sYC" firstAttribute="centerX" secondItem="kIV-he-CqM" secondAttribute="centerX" id="gJy-w8-IR9"/>
                             <constraint firstItem="2LA-Jn-QZB" firstAttribute="centerX" secondItem="kIV-he-CqM" secondAttribute="centerX" id="hWa-EY-qaB"/>
-                            <constraint firstItem="IVb-e4-cEj" firstAttribute="bottom" secondItem="2LA-Jn-QZB" secondAttribute="bottom" constant="40" id="hvq-GR-uxW"/>
+                            <constraint firstItem="IVb-e4-cEj" firstAttribute="bottom" secondItem="2LA-Jn-QZB" secondAttribute="bottom" constant="16" id="hvq-GR-uxW"/>
                             <constraint firstItem="Tew-t7-rqr" firstAttribute="leading" secondItem="7ok-vy-sYC" secondAttribute="leading" id="lys-BG-Pb1"/>
                             <constraint firstItem="2LA-Jn-QZB" firstAttribute="leading" secondItem="IVb-e4-cEj" secondAttribute="leading" constant="16" id="n93-Hc-Xz8"/>
                         </constraints>

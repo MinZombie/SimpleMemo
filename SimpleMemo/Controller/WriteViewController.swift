@@ -18,6 +18,7 @@ class WriteViewController: UIViewController {
     static let identifier = "WriteViewController"
     private var keyboardHeigt: CGFloat = 0
     private var textViewPlaceholder = NSLocalizedString("TextViewPlaceholder", comment: "")
+    private var isMovedButton = false
 
     
     // MARK: - Lifecycle
@@ -29,10 +30,13 @@ class WriteViewController: UIViewController {
         setUpAddButton()
         setUpTextView()
         setUpColorButtons()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -54,16 +58,23 @@ class WriteViewController: UIViewController {
     }
     
     @objc private func keyboardWillHide(_ sender: Notification) {
-        addButton.frame.origin.y += keyboardHeigt
+        if isMovedButton {
+            addButton.frame.origin.y += keyboardHeigt
+            isMovedButton.toggle()
+        }
     }
     
     @objc private func keyboardWillShow(_ sender: Notification) {
         
-        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            keyboardHeigt = keyboardRectangle.height
-            addButton.frame.origin.y -= keyboardHeigt
-            print(#function)
+        if !isMovedButton {
+            
+            if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardRectangle = keyboardFrame.cgRectValue
+                keyboardHeigt = keyboardRectangle.height
+                addButton.frame.origin.y -= keyboardHeigt
+                isMovedButton.toggle()
+
+            }
         }
     }
     
@@ -72,9 +83,9 @@ class WriteViewController: UIViewController {
             button.setTitle("", for: .normal)
             button.layer.cornerRadius = button.frame.width / 2
             button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)
-            button.layer.shadowRadius = 6.0
-            button.layer.shadowOpacity = 0.6
+            button.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+            button.layer.shadowRadius = 4.0
+            button.layer.shadowOpacity = 0.5
             button.addTarget(self, action: #selector(didTapColorButton(_:)), for: .touchUpInside)
         }
         buttonView.backgroundColor = .clear
