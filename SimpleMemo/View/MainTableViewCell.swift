@@ -44,7 +44,7 @@ class MainTableViewCell: UITableViewCell {
     
     public func configure(with viewModel: ViewModel) {
         bodyText.text = viewModel.bodyText
-        date.text = viewModel.date
+        date.text = "\(viewModel.date)"
         viewContainer.backgroundColor = UIColor(named: viewModel.backgroundColor)
     }
     
