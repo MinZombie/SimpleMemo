@@ -17,14 +17,15 @@ class MainViewController: UIViewController {
     
     private var viewModels: [MainTableViewCell.ViewModel] = []
     private let realm = try! Realm()
+    private var memos: Results<Memo>!
+    private var observer: NSObjectProtocol?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configure()
-        readMemos()
-        
+        setUpObserver()
     }
 
     
@@ -39,12 +40,38 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func readMemos() {
+    private func setUpObserver() {
+        memos = realm.objects(Memo.self)
+        
+        observer = memos.observe { [weak self] changes in
+            switch changes {
+            case .initial(let data):
+                
+                self?.fetchMemos(with: data)
+                
+            case .update(let data, let deletions, let insertions, let modifications):
+                
+                self?.viewModels.removeAll()
+                self?.fetchMemos(with: data)
+                
+            case .error(let error):
+                print(error)
+                         
+            }
+        }
+    }
+    
+    private func fetchMemos(with data: Results<Memo>) {
+        var viewModels = [MainTableViewCell.ViewModel]()
         
         for memo in realm.objects(Memo.self) {
             viewModels.append(
-                .init(bodyText: memo.content, date: memo.dateFormatter, backgroundColor: memo.backgroundColor)
+                .init(bodyText: memo.content, date: memo.date, backgroundColor: memo.backgroundColor)
             )
+        }
+        DispatchQueue.main.async {
+            self.viewModels = viewModels.sorted(by: { $0.date > $1.date })
+            self.tableView.reloadData()
         }
     }
 
@@ -101,3 +128,4 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
+

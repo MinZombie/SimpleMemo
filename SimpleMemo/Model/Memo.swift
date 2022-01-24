@@ -18,10 +18,4 @@ class Memo: Object {
         self.content = content
         self.backgroundColor = backgroundColor
     }
-    
-    var dateFormatter: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: self.date)
-    }
 }

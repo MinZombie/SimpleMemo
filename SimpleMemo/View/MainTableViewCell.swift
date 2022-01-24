@@ -11,8 +11,14 @@ class MainTableViewCell: UITableViewCell {
     
     struct ViewModel {
         var bodyText: String
-        var date: String
+        var date: Date
         var backgroundColor: String
+        
+        var dateFormatter: String {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            return formatter.string(from: self.date)
+        }
     }
     
     @IBOutlet weak var viewContainer: UIView!
@@ -39,12 +45,11 @@ class MainTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //setUpContainerView()
     }
     
     public func configure(with viewModel: ViewModel) {
         bodyText.text = viewModel.bodyText
-        date.text = "\(viewModel.date)"
+        date.text = "\(viewModel.dateFormatter)"
         viewContainer.backgroundColor = UIColor(named: viewModel.backgroundColor)
     }
     
