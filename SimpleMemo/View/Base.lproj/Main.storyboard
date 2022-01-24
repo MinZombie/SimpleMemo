@@ -153,14 +153,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LA-Jn-QZB">
-                                <rect key="frame" x="16" y="804" width="382" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="8YQ-hX-BcS"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-t7-rqr">
                                 <rect key="frame" x="20" y="54" width="374" height="50"/>
                                 <subviews>
@@ -175,7 +167,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="tTG-9X-drr"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="red"/>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-4n-Jey">
                                                 <rect key="frame" x="50" y="0.0" width="32" height="32"/>
@@ -185,7 +177,7 @@
                                                     <constraint firstAttribute="height" constant="32" id="khV-3a-WHl"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="orange"/>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLf-45-iej">
                                                 <rect key="frame" x="100" y="0.0" width="32" height="32"/>
@@ -195,7 +187,7 @@
                                                     <constraint firstAttribute="height" constant="32" id="umd-tC-dIU"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="yellow"/>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kaj-e2-PFu">
                                                 <rect key="frame" x="150" y="0.0" width="32" height="32"/>
@@ -205,7 +197,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="XC9-Go-gkx"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="green"/>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekG-ac-dTr">
                                                 <rect key="frame" x="200" y="0.0" width="32" height="32"/>
@@ -215,7 +207,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="kv1-Rt-53N"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="blue"/>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QES-t4-hSw">
                                                 <rect key="frame" x="250" y="0.0" width="32" height="32"/>
@@ -225,7 +217,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="NMc-3B-p97"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="light_purple"/>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ziz-GK-Irx">
                                                 <rect key="frame" x="300" y="0.0" width="32" height="32"/>
@@ -235,7 +227,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="jvr-6J-ip6"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <buttonConfiguration key="configuration" style="plain" title="dark_purple"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -265,22 +257,17 @@
                         <constraints>
                             <constraint firstItem="7ok-vy-sYC" firstAttribute="top" secondItem="Tew-t7-rqr" secondAttribute="bottom" constant="8" id="5Ku-ya-kcc"/>
                             <constraint firstItem="Tew-t7-rqr" firstAttribute="trailing" secondItem="7ok-vy-sYC" secondAttribute="trailing" id="Ad7-cF-xej"/>
-                            <constraint firstItem="IVb-e4-cEj" firstAttribute="trailing" secondItem="2LA-Jn-QZB" secondAttribute="trailing" constant="16" id="CUy-fp-D0M"/>
                             <constraint firstItem="IVb-e4-cEj" firstAttribute="trailing" secondItem="7ok-vy-sYC" secondAttribute="trailing" constant="20" id="FIJ-qH-SZI"/>
                             <constraint firstItem="Tew-t7-rqr" firstAttribute="top" secondItem="IVb-e4-cEj" secondAttribute="top" constant="10" id="Hu6-EZ-UZd"/>
                             <constraint firstItem="7ok-vy-sYC" firstAttribute="leading" secondItem="IVb-e4-cEj" secondAttribute="leading" constant="20" id="edQ-FR-x7w"/>
                             <constraint firstItem="7ok-vy-sYC" firstAttribute="centerX" secondItem="kIV-he-CqM" secondAttribute="centerX" id="gJy-w8-IR9"/>
-                            <constraint firstItem="2LA-Jn-QZB" firstAttribute="centerX" secondItem="kIV-he-CqM" secondAttribute="centerX" id="hWa-EY-qaB"/>
-                            <constraint firstItem="IVb-e4-cEj" firstAttribute="bottom" secondItem="2LA-Jn-QZB" secondAttribute="bottom" constant="16" id="hvq-GR-uxW"/>
                             <constraint firstItem="Tew-t7-rqr" firstAttribute="leading" secondItem="7ok-vy-sYC" secondAttribute="leading" id="lys-BG-Pb1"/>
-                            <constraint firstItem="2LA-Jn-QZB" firstAttribute="leading" secondItem="IVb-e4-cEj" secondAttribute="leading" constant="16" id="n93-Hc-Xz8"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Vt4-vu-fB4" appends="YES" id="RBL-jR-JqJ"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="2LA-Jn-QZB" id="RMa-aB-7Ck"/>
                         <outlet property="buttonView" destination="Tew-t7-rqr" id="SF3-Jz-JO0"/>
                         <outlet property="textView" destination="7ok-vy-sYC" id="F4x-Xu-033"/>
                         <outletCollection property="colorButtons" destination="Se5-lG-NjW" collectionClass="NSMutableArray" id="21Y-Le-jO8"/>
