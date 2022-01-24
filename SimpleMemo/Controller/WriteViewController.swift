@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class WriteViewController: UIViewController {
     
-    
-    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet var colorButtons: [UIButton]!
     
+    let realm = try! Realm()
+    
     static let identifier = "WriteViewController"
     private var keyboardHeigt: CGFloat = 0
     private var textViewPlaceholder = NSLocalizedString("TextViewPlaceholder", comment: "")
-    private var isMovedButton = false
+    private var selectedColor = ""
 
     
     // MARK: - Lifecycle
@@ -27,7 +28,7 @@ class WriteViewController: UIViewController {
         view.backgroundColor = UIColor(named: "BG")
         
         setUpNavigation()
-        setUpAddButton()
+        
         setUpTextView()
         setUpColorButtons()
         
@@ -37,14 +38,10 @@ class WriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -53,27 +50,22 @@ class WriteViewController: UIViewController {
         view.endEditing(true)
     }
     
+    
+    
     @objc private func didTapColorButton(_ sender: UIButton) {
-        
-    }
-    
-    @objc private func keyboardWillHide(_ sender: Notification) {
-        if isMovedButton {
-            addButton.frame.origin.y += keyboardHeigt
-            isMovedButton.toggle()
+        if let color = sender.titleLabel?.text {
+            self.selectedColor = color
         }
-    }
-    
-    @objc private func keyboardWillShow(_ sender: Notification) {
-        
-        if !isMovedButton {
-            
-            if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardRectangle = keyboardFrame.cgRectValue
-                keyboardHeigt = keyboardRectangle.height
-                addButton.frame.origin.y -= keyboardHeigt
-                isMovedButton.toggle()
 
+        for button in colorButtons {
+            sender == button ? (sender.isSelected = true) : (sender.isSelected = false)
+            
+            if button.isSelected {
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.darkGray.cgColor
+            } else {
+                button.layer.borderWidth = 1
+                button.layer.borderColor = UIColor.lightGray.cgColor
             }
         }
     }
@@ -86,7 +78,10 @@ class WriteViewController: UIViewController {
             button.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
             button.layer.shadowRadius = 4.0
             button.layer.shadowOpacity = 0.5
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.lightGray.cgColor
             button.addTarget(self, action: #selector(didTapColorButton(_:)), for: .touchUpInside)
+            
         }
         buttonView.backgroundColor = .clear
     }
@@ -99,6 +94,10 @@ class WriteViewController: UIViewController {
         textView.backgroundColor = .white
         textView.text = textViewPlaceholder
         textView.textColor = .lightGray
+        
+        guard let accessoryView = Bundle.main.loadNibNamed(AccessoryView.identifier, owner: self, options: nil)?.first as? AccessoryView else { return }
+        accessoryView.delegate = self
+        textView.inputAccessoryView = accessoryView
     }
     
     private func setUpNavigation() {
@@ -108,13 +107,6 @@ class WriteViewController: UIViewController {
     }
     
 
-    
-    private func setUpAddButton() {
-        addButton.setTitle(NSLocalizedString("AddButtonSetTitle", comment: ""), for: .normal)
-        addButton.setTitleColor(.white, for: .normal)
-        addButton.backgroundColor = UIColor(named: "Button")
-        addButton.layer.cornerRadius = 12
-    }
 
 }
 
@@ -144,5 +136,20 @@ extension WriteViewController: UITextViewDelegate {
 
 }
 
+extension WriteViewController: AccessoryViewDelegate {
+    func AccessoryViewDidTapAddButton(view: AccessoryView) {
 
+        guard let text = textView.text, !text.trimmingCharacters(in: .whitespaces).isEmpty else {
+            // alert 화면 보여주기
+            return
+        }
+        let data = Memo(content: text, backgroundColor: selectedColor)
+        
+        try! realm.write {
+            realm.add(data)
+        }
+        
+        navigationController?.popViewController(animated: true)
+    }
+}
 

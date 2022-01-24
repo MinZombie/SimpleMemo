@@ -6,29 +6,25 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
-    
-    let dummy: [MainTableViewCell.ViewModel] = [
-        .init(bodyText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s", date: "2021/12/12", backgroundColor: "Red"),
-        .init(bodyText: "Lorem Ipsum", date: "2021/12/12", backgroundColor: "Orange"),
-        .init(bodyText: "내일 이마트 가기", date: "2021/12/12", backgroundColor: "Yellow"),
-        .init(bodyText: "오늘 리뷰 꼭 쓰기", date: "2021/12/12", backgroundColor: "Green"),
-        .init(bodyText: "제발 제발 제발 제발 제발 제발 제발🤩", date: "2021/12/12", backgroundColor: "Blue"),
-        .init(bodyText: "There are many variations of passages of Lorem Ipsum available, but", date: "2021/12/12", backgroundColor: "Light_Purple"),
-        .init(bodyText: "내일 이마트 가기", date: "2021/12/12", backgroundColor: "Dark_Purple"),
-    ]
 
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var addMemoButton: UIButton!
     
+    private var viewModels: [MainTableViewCell.ViewModel] = []
+    private let realm = try! Realm()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+        readMemos()
+        
     }
 
     
@@ -41,6 +37,15 @@ class MainViewController: UIViewController {
     @objc func didTapAddMemoButton() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: WriteViewController.identifier) as! WriteViewController
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func readMemos() {
+        
+        for memo in realm.objects(Memo.self) {
+            viewModels.append(
+                .init(bodyText: memo.content, date: memo.dateFormatter, backgroundColor: memo.backgroundColor)
+            )
+        }
     }
 
     private func configure() {
@@ -85,13 +90,13 @@ class MainViewController: UIViewController {
 // MARK: - UITableViewDataSource, Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummy.count
+        return viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
         
-        cell.configure(with: dummy[indexPath.row])
+        cell.configure(with: viewModels[indexPath.row])
         
         return cell
     }
