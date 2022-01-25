@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MainTableViewCellDelegate: AnyObject {
+    func didTapOptionButton(_ cell: MainTableViewCell)
+}
+
 class MainTableViewCell: UITableViewCell {
     
     struct ViewModel {
@@ -24,17 +28,21 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var bodyText: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var optionButton: UIButton!
     
     static let identifier = "MainTableViewCell"
+    
+    weak var delegate: MainTableViewCellDelegate?
+    var index = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         configure()
         setUpContainerView()
-        viewContainer.backgroundColor = UIColor(named: "Green")
         backgroundColor = .clear
         selectionStyle = .none
+        setUpOptionButton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -50,7 +58,12 @@ class MainTableViewCell: UITableViewCell {
     public func configure(with viewModel: ViewModel) {
         bodyText.text = viewModel.bodyText
         date.text = "\(viewModel.dateFormatter)"
-        viewContainer.backgroundColor = UIColor(named: viewModel.backgroundColor)
+        viewContainer.backgroundColor = UIColor(named: viewModel.backgroundColor)SimpleMemo/Other/Extension.swift
+    }
+    
+    @objc private func didTapOptionButton(_ sender: UIButton) {
+        delegate?.didTapOptionButton(self)
+        
     }
     
     private func setUpContainerView() {
@@ -59,6 +72,7 @@ class MainTableViewCell: UITableViewCell {
         viewContainer.layer.shadowOpacity = 0.3
         viewContainer.layer.shadowColor = UIColor.black.cgColor
         viewContainer.layer.shadowRadius = 4
+        viewContainer.backgroundColor = UIColor(named: "Green")
     }
     
     private func configure() {
@@ -67,5 +81,12 @@ class MainTableViewCell: UITableViewCell {
         bodyText.numberOfLines = 0
         bodyText.font = UIFont(name: "GowunDodum-Regular", size: 15)
         date.font = .systemFont(ofSize: 11, weight: .thin)
+    }
+    
+    private func setUpOptionButton() {
+        optionButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        optionButton.tintColor = UIColor(named: "content")
+        optionButton.backgroundColor = .clear
+        optionButton.addTarget(self, action: #selector(didTapOptionButton(_:)), for: .touchUpInside)
     }
 }

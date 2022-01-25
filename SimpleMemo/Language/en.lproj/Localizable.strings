@@ -9,5 +9,10 @@
 "NavigationTitle" = "Notes";
 "SettingTitle" = "Setting";
 "SearchPlaceholder" = "Search";
-"AddButtonSetTitle" = "Add";
+"AddButtonSetTitle" = "Save";
 "TextViewPlaceholder" = "Please write your text here";
+"WriteViewEditTitle" = "Edit";
+"WriteViewAddTitle" = "New note";
+"Edit" = "Edit";
+"Delete" = "Delete";
+"Cancel" = "Cancel";

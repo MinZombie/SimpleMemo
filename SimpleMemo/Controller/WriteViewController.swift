@@ -17,10 +17,10 @@ class WriteViewController: UIViewController {
     let realm = try! Realm()
     
     static let identifier = "WriteViewController"
-    private var keyboardHeigt: CGFloat = 0
     private var textViewPlaceholder = NSLocalizedString("TextViewPlaceholder", comment: "")
     private var selectedColor = ""
-
+    
+    var viewModels: MainTableViewCell.ViewModel?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -28,9 +28,23 @@ class WriteViewController: UIViewController {
         view.backgroundColor = UIColor(named: "BG")
         
         setUpNavigation()
-        
         setUpTextView()
         setUpColorButtons()
+        
+        switch viewModels {
+        case .some(let data):
+            title = NSLocalizedString("WriteViewEditTitle", comment: "")
+            textView.text = data.bodyText
+            textView.textColor = .black
+            selectedColor = data.backgroundColor
+            
+            for button in colorButtons.filter({ $0.titleLabel?.text == selectedColor }) {
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.darkGray.cgColor
+            }
+        case .none:
+            title = NSLocalizedString("WriteViewAddTitle", comment: "")
+        }
         
         
     }
@@ -64,8 +78,8 @@ class WriteViewController: UIViewController {
                 button.layer.borderWidth = 2
                 button.layer.borderColor = UIColor.darkGray.cgColor
             } else {
-                button.layer.borderWidth = 1
-                button.layer.borderColor = UIColor.lightGray.cgColor
+                button.layer.borderWidth = 0
+                button.layer.borderColor = UIColor.clear.cgColor
             }
         }
     }
@@ -78,10 +92,7 @@ class WriteViewController: UIViewController {
             button.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
             button.layer.shadowRadius = 4.0
             button.layer.shadowOpacity = 0.5
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.lightGray.cgColor
             button.addTarget(self, action: #selector(didTapColorButton(_:)), for: .touchUpInside)
-            
         }
         buttonView.backgroundColor = .clear
     }
@@ -120,7 +131,7 @@ extension WriteViewController: UITextViewDelegate {
     
     // 텍스트뷰에 placeholder를 지움(텍스트뷰에 텍스트를 쓰기 시작하니까)
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == textViewPlaceholder {
+        if textView.textColor == .lightGray {
             textView.text = nil
             textView.textColor = .black
         }
@@ -143,12 +154,28 @@ extension WriteViewController: AccessoryViewDelegate {
             // alert 화면 보여주기
             return
         }
-        let data = Memo(content: text, backgroundColor: selectedColor)
         
-        try! realm.write {
-            realm.add(data)
+        if viewModels == nil {
+            // 새 메모를 작성할 때
+            let data = Memo(content: text, backgroundColor: selectedColor)
+            
+            try! realm.write {
+                realm.add(data)
+            }
+        } else {
+            // 기존에 있던 메모를 수정할 때
+            try! realm.write {
+                let memo = realm.objects(Memo.self).where {
+                    $0.date == viewModels!.date
+                }
+                memo[0].content = text
+                memo[0].backgroundColor = selectedColor
+                memo[0].date = Date()
+            }
+            
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "didTapAddButton"), object: nil)
         navigationController?.popViewController(animated: true)
     }
 }

@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
                 
                 self?.fetchMemos(with: data)
                 
-            case .update(let data, let deletions, let insertions, let modifications):
+            case .update(let data, _, _, _):
                 
                 self?.viewModels.removeAll()
                 self?.fetchMemos(with: data)
@@ -124,8 +124,43 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
         
         cell.configure(with: viewModels[indexPath.row])
+        cell.delegate = self
+        cell.index = indexPath.row
         
         return cell
     }
+    
 }
 
+extension MainViewController: MainTableViewCellDelegate {
+    
+    func didTapOptionButton(_ cell: MainTableViewCell) {
+        
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let editAction = UIAlertAction(title: NSLocalizedString("Edit", comment: ""), style: .default) { [weak self] _ in
+            let vc = self?.storyboard?.instantiateViewController(withIdentifier: WriteViewController.identifier) as! WriteViewController
+            vc.viewModels = self?.viewModels[cell.index]
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
+            try! self?.realm.write {
+                let memo = self?.realm.objects(Memo.self).where {
+                    $0.date == (self?.viewModels[cell.index].date)!
+                }
+                self?.realm.delete(memo!)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        
+        controller.addAction(editAction)
+        controller.addAction(deleteAction)
+        controller.addAction(cancelAction)
+        
+        self.present(controller, animated: true)
+    }
+    
+    
+}
