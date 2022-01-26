@@ -150,8 +150,22 @@ extension WriteViewController: UITextViewDelegate {
 extension WriteViewController: AccessoryViewDelegate {
     func AccessoryViewDidTapAddButton(view: AccessoryView) {
 
-        guard let text = textView.text, !text.trimmingCharacters(in: .whitespaces).isEmpty else {
+        guard let text = textView.text,
+              !text.trimmingCharacters(in: .whitespaces).isEmpty,
+              !selectedColor.isEmpty else {
             // alert 화면 보여주기
+            let controller = UIAlertController(
+                title: NSLocalizedString("Notice", comment: ""),
+                message: NSLocalizedString("AlertMessageForWriteVC", comment: ""),
+                preferredStyle: .alert
+            )
+            let okAction = UIAlertAction(
+                title: NSLocalizedString("Ok", comment: ""),
+                style: .default, handler: nil
+            )
+            controller.addAction(okAction)
+            self.present(controller, animated: true)
+            
             return
         }
         

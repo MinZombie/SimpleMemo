@@ -16,3 +16,6 @@
 "Edit" = "수정";
 "Delete" = "삭제";
 "Cancel" = "취소";
+"Ok" = "확인";
+"Notice" = "알림";
+"AlertMessageForWriteVC" = "색상을 선택하고, 텍스트를 입력해주세요.";
