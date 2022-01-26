@@ -95,9 +95,9 @@ class MainViewController: UIViewController {
         // 내비게이션 설정
         title = NSLocalizedString("NavigationTitle", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barTintColor = UIColor(named: "BG")
         
         // 서치바 설정
-//        let resultVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
         searchController.obscuresBackgroundDuringPresentation = false
