@@ -57,8 +57,7 @@ class MainViewController: UIViewController {
                 self?.fetchMemos(with: data)
                 
             case .update(let data, _, _, _):
-                
-                self?.viewModels.removeAll()
+
                 self?.fetchMemos(with: data)
                 
             case .error(let error):
@@ -71,7 +70,10 @@ class MainViewController: UIViewController {
     private func fetchMemos(with data: Results<Memo>) {
         var viewModels = [MainTableViewCell.ViewModel]()
         
-        for memo in realm.objects(Memo.self) {
+        
+        viewModels.removeAll()
+        
+        for memo in data {
             viewModels.append(
                 .init(bodyText: memo.content, date: memo.date, backgroundColor: memo.backgroundColor)
             )
@@ -80,6 +82,9 @@ class MainViewController: UIViewController {
             self.viewModels = viewModels.sorted(by: { $0.date > $1.date })
             self.tableView.reloadData()
         }
+        
+        
+        
     }
 
     private func configure() {
@@ -170,7 +175,7 @@ extension MainViewController: UISearchResultsUpdating {
                 .init(bodyText: item.content, date: item.date, backgroundColor: item.backgroundColor)
             )
         }
-        self.filteredData = tempArr
+        self.filteredData = tempArr.sorted(by: { $0.date > $1.date })
         tableView.reloadData()
     }
 }
@@ -188,11 +193,14 @@ extension MainViewController: MainTableViewCellDelegate {
         }
         
         let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
+            
             try! self?.realm.write {
                 let memo = self?.realm.objects(Memo.self).where {
                     self?.isFiltering == true ? ($0.date == (self?.filteredData[cell.index].date)!) : ($0.date == (self?.viewModels[cell.index].date)!)
                 }
                 self?.realm.delete(memo!)
+                self?.filteredData.remove(at: cell.index)
+                self?.tableView.reloadData()
             }
         }
         
