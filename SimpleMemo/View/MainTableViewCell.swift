@@ -55,10 +55,17 @@ class MainTableViewCell: UITableViewCell {
         super.layoutSubviews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bodyText.text = nil
+        date.text = nil
+        viewContainer.backgroundColor = nil
+    }
+    
     public func configure(with viewModel: ViewModel) {
         bodyText.text = viewModel.bodyText
         date.text = "\(viewModel.dateFormatter)"
-        viewContainer.backgroundColor = UIColor(named: viewModel.backgroundColor)SimpleMemo/Other/Extension.swift
+        viewContainer.backgroundColor = UIColor(named: viewModel.backgroundColor)
     }
     
     @objc private func didTapOptionButton(_ sender: UIButton) {

@@ -19,6 +19,13 @@ class MainViewController: UIViewController {
     private let realm = try! Realm()
     private var memos: Results<Memo>!
     private var observer: NSObjectProtocol?
+    private var isFiltering: Bool {
+        let searchController = navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isEmpty = searchController?.searchBar.text?.isEmpty == false
+        return isActive && isEmpty
+    }
+    private var filteredData: [MainTableViewCell.ViewModel] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -90,8 +97,11 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         // 서치바 설정
+//        let resultVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         
@@ -117,19 +127,52 @@ class MainViewController: UIViewController {
 // MARK: - UITableViewDataSource, Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredData.count
+        }
+        
         return viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
         
-        cell.configure(with: viewModels[indexPath.row])
+        
+        if isFiltering {
+            cell.configure(with: filteredData[indexPath.row])
+            cell.index = indexPath.row
+            
+        } else {
+            cell.configure(with: viewModels[indexPath.row])
+            cell.index = indexPath.row
+        }
+
         cell.delegate = self
-        cell.index = indexPath.row
+        
         
         return cell
     }
     
+}
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        var tempArr = [MainTableViewCell.ViewModel]()
+        let result = realm.objects(Memo.self).where {
+            $0.content.contains(text)
+        }
+        
+        for item in result {
+            tempArr.append(
+                .init(bodyText: item.content, date: item.date, backgroundColor: item.backgroundColor)
+            )
+        }
+        self.filteredData = tempArr
+        tableView.reloadData()
+    }
 }
 
 extension MainViewController: MainTableViewCellDelegate {
@@ -140,14 +183,14 @@ extension MainViewController: MainTableViewCellDelegate {
         
         let editAction = UIAlertAction(title: NSLocalizedString("Edit", comment: ""), style: .default) { [weak self] _ in
             let vc = self?.storyboard?.instantiateViewController(withIdentifier: WriteViewController.identifier) as! WriteViewController
-            vc.viewModels = self?.viewModels[cell.index]
+            self?.isFiltering == true ? (vc.viewModels = self?.filteredData[cell.index]) : (vc.viewModels = self?.viewModels[cell.index])
             self?.navigationController?.pushViewController(vc, animated: true)
         }
         
         let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
             try! self?.realm.write {
                 let memo = self?.realm.objects(Memo.self).where {
-                    $0.date == (self?.viewModels[cell.index].date)!
+                    self?.isFiltering == true ? ($0.date == (self?.filteredData[cell.index].date)!) : ($0.date == (self?.viewModels[cell.index].date)!)
                 }
                 self?.realm.delete(memo!)
             }
