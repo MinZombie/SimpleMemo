@@ -72,14 +72,16 @@ class WriteViewController: UIViewController {
         }
 
         for button in colorButtons {
-            sender == button ? (sender.isSelected = true) : (sender.isSelected = false)
+
+            //sender == button ? (sender.isSelected = true) : (sender.isSelected = false)
+            button.isSelected = (sender == button)
             
-            if button.isSelected {
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.darkGray.cgColor
-            } else {
+            if !button.isSelected {
                 button.layer.borderWidth = 0
                 button.layer.borderColor = UIColor.clear.cgColor
+            } else {
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.darkGray.cgColor
             }
         }
     }
