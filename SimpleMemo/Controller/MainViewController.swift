@@ -166,9 +166,7 @@ extension MainViewController: UISearchResultsUpdating {
             return
         }
         var tempArr = [MainTableViewCell.ViewModel]()
-        let result = realm.objects(Memo.self).where {
-            $0.content.contains(text)
-        }
+        let result = realm.objects(Memo.self).filter("content CONTAINS[c] '\(text)'")
         
         for item in result {
             tempArr.append(
