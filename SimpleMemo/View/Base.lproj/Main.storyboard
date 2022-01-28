@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeM-Qu-EZp">
-                                                    <rect key="frame" x="16" y="16" width="382" height="138"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="154"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-cv-Lpp">
                                                             <rect key="frame" x="16" y="16" width="350" height="21"/>
@@ -38,34 +38,45 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaB-ZW-jZy">
-                                                            <rect key="frame" x="16" y="101" width="350" height="21"/>
+                                                            <rect key="frame" x="16" y="117" width="302" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGA-Xl-BHF">
+                                                            <rect key="frame" x="334" y="111.5" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="Kdp-Xf-NHY"/>
+                                                                <constraint firstAttribute="width" constant="32" id="zCB-xZ-NmO"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="BaB-ZW-jZy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BJp-cv-Lpp" secondAttribute="bottom" constant="16" id="CmO-Ye-03u"/>
                                                         <constraint firstAttribute="trailing" secondItem="BJp-cv-Lpp" secondAttribute="trailing" constant="16" id="EOn-TM-20b"/>
+                                                        <constraint firstItem="JGA-Xl-BHF" firstAttribute="centerY" secondItem="BaB-ZW-jZy" secondAttribute="centerY" id="GiZ-sn-MwB"/>
                                                         <constraint firstAttribute="bottom" secondItem="BaB-ZW-jZy" secondAttribute="bottom" constant="16" id="Hdq-Mr-5bt"/>
+                                                        <constraint firstItem="JGA-Xl-BHF" firstAttribute="trailing" secondItem="BJp-cv-Lpp" secondAttribute="trailing" id="eZW-Pt-YfX"/>
+                                                        <constraint firstItem="JGA-Xl-BHF" firstAttribute="leading" secondItem="BaB-ZW-jZy" secondAttribute="trailing" constant="16" id="gQI-IK-c3f"/>
                                                         <constraint firstItem="BJp-cv-Lpp" firstAttribute="top" secondItem="yeM-Qu-EZp" secondAttribute="top" constant="16" id="hpK-54-p4d"/>
-                                                        <constraint firstAttribute="trailing" secondItem="BaB-ZW-jZy" secondAttribute="trailing" constant="16" id="lWb-qC-eWV"/>
                                                         <constraint firstItem="BJp-cv-Lpp" firstAttribute="leading" secondItem="yeM-Qu-EZp" secondAttribute="leading" constant="16" id="ofC-le-Lua"/>
                                                         <constraint firstItem="BaB-ZW-jZy" firstAttribute="leading" secondItem="BJp-cv-Lpp" secondAttribute="leading" id="twy-zI-VFa"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yeM-Qu-EZp" firstAttribute="top" secondItem="uiJ-Mp-seH" secondAttribute="top" constant="16" id="Qdu-Qe-Q2E"/>
+                                                <constraint firstItem="yeM-Qu-EZp" firstAttribute="top" secondItem="uiJ-Mp-seH" secondAttribute="top" constant="8" id="Qdu-Qe-Q2E"/>
                                                 <constraint firstItem="yeM-Qu-EZp" firstAttribute="leading" secondItem="uiJ-Mp-seH" secondAttribute="leading" constant="16" id="XOb-Lr-m6K"/>
-                                                <constraint firstAttribute="bottom" secondItem="yeM-Qu-EZp" secondAttribute="bottom" constant="16" id="bMU-EL-ddK"/>
+                                                <constraint firstAttribute="bottom" secondItem="yeM-Qu-EZp" secondAttribute="bottom" constant="8" id="bMU-EL-ddK"/>
                                                 <constraint firstAttribute="trailing" secondItem="yeM-Qu-EZp" secondAttribute="trailing" constant="16" id="mQ5-nM-6GK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bodyText" destination="BJp-cv-Lpp" id="hFc-Lx-YvJ"/>
                                             <outlet property="date" destination="BaB-ZW-jZy" id="l1M-tJ-ARB"/>
+                                            <outlet property="optionButton" destination="JGA-Xl-BHF" id="2op-ay-65r"/>
                                             <outlet property="viewContainer" destination="yeM-Qu-EZp" id="Jya-dL-gXJ"/>
                                         </connections>
                                     </tableViewCell>
@@ -77,8 +88,7 @@
                                     <constraint firstAttribute="height" constant="50" id="FI4-kV-NuZ"/>
                                     <constraint firstAttribute="width" constant="50" id="T5c-GU-9QT"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -161,72 +171,80 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Se5-lG-NjW">
                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Red"/>
+                                                <color key="backgroundColor" name="red"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="5Eq-s3-xQf"/>
-                                                    <constraint firstAttribute="width" constant="32" id="tTG-9X-drr"/>
+                                                    <constraint firstAttribute="width" constant="32" id="k7R-aK-3pb"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="red"/>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-4n-Jey">
                                                 <rect key="frame" x="50" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Orange"/>
+                                                <color key="backgroundColor" name="orange"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="NPw-Wr-23w"/>
+                                                    <constraint firstAttribute="width" constant="32" id="TaQ-wj-8UJ"/>
                                                     <constraint firstAttribute="height" constant="32" id="khV-3a-WHl"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="orange"/>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLf-45-iej">
                                                 <rect key="frame" x="100" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Yellow"/>
+                                                <color key="backgroundColor" name="yellow"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="haL-i4-QNY"/>
+                                                    <constraint firstAttribute="width" constant="32" id="iz4-hC-knm"/>
                                                     <constraint firstAttribute="height" constant="32" id="umd-tC-dIU"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="yellow"/>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kaj-e2-PFu">
                                                 <rect key="frame" x="150" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Green"/>
+                                                <color key="backgroundColor" name="green"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="99w-zH-AVv"/>
                                                     <constraint firstAttribute="height" constant="32" id="A4L-YV-vKg"/>
-                                                    <constraint firstAttribute="width" constant="32" id="XC9-Go-gkx"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="green"/>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekG-ac-dTr">
                                                 <rect key="frame" x="200" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Blue"/>
+                                                <color key="backgroundColor" name="blue"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="Ske-Do-zp3"/>
                                                     <constraint firstAttribute="height" constant="32" id="Vja-c7-tyn"/>
-                                                    <constraint firstAttribute="width" constant="32" id="kv1-Rt-53N"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="blue"/>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QES-t4-hSw">
                                                 <rect key="frame" x="250" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Light_Purple"/>
+                                                <color key="backgroundColor" name="light_purple"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="C2r-qf-mCT"/>
-                                                    <constraint firstAttribute="width" constant="32" id="NMc-3B-p97"/>
+                                                    <constraint firstAttribute="width" constant="32" id="enF-Ot-fzF"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="light_purple"/>
                                             </button>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ziz-GK-Irx">
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qd-KQ-PJF">
                                                 <rect key="frame" x="300" y="0.0" width="32" height="32"/>
-                                                <color key="backgroundColor" name="Dark_Purple"/>
+                                                <color key="backgroundColor" name="dark_purple"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="Rkn-7V-xPG"/>
-                                                    <constraint firstAttribute="width" constant="32" id="jvr-6J-ip6"/>
+                                                    <constraint firstAttribute="height" constant="32" id="tdh-a7-EXx"/>
+                                                    <constraint firstAttribute="width" constant="32" id="v0x-WX-23q"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="dark_purple"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="dark_purple"/>
                                             </button>
                                         </subviews>
@@ -276,7 +294,7 @@
                         <outletCollection property="colorButtons" destination="Kaj-e2-PFu" collectionClass="NSMutableArray" id="9lo-Ga-8s0"/>
                         <outletCollection property="colorButtons" destination="ekG-ac-dTr" collectionClass="NSMutableArray" id="qry-wq-Ezy"/>
                         <outletCollection property="colorButtons" destination="QES-t4-hSw" collectionClass="NSMutableArray" id="fHe-bQ-kgn"/>
-                        <outletCollection property="colorButtons" destination="Ziz-GK-Irx" collectionClass="NSMutableArray" id="IH3-BI-dg5"/>
+                        <outletCollection property="colorButtons" destination="0Qd-KQ-PJF" collectionClass="NSMutableArray" id="xT4-8f-aLN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ez-y0-D0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -308,25 +326,28 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="Blue">
-            <color red="0.70999997854232788" green="0.87099999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Dark_Purple">
             <color red="0.69019607843137254" green="0.53333333333333333" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Green">
+        <namedColor name="blue">
+            <color red="0.70980392156862748" green="0.87058823529411766" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dark_purple">
+            <color red="0.69019607843137254" green="0.53333333333333333" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="green">
             <color red="0.72941176470588232" green="0.99215686274509807" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Light_Purple">
+        <namedColor name="light_purple">
             <color red="0.85490196078431369" green="0.62352941176470589" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Orange">
+        <namedColor name="orange">
             <color red="1" green="0.6705882352941176" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Red">
+        <namedColor name="red">
             <color red="1" green="0.38823529411764707" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Yellow">
+        <namedColor name="yellow">
             <color red="1" green="0.99215686274509807" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">

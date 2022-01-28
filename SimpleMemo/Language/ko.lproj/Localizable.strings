@@ -9,5 +9,13 @@
 "NavigationTitle" = "메모";
 "SettingTitle" = "설정";
 "SearchPlaceholder" = "검색";
-"AddButtonSetTitle" = "추가";
+"AddButtonSetTitle" = "저장";
 "TextViewPlaceholder" = "텍스트를 여기에 입력해주세요";
+"WriteViewEditTitle" = "수정";
+"WriteViewAddTitle" = "새로운 메모";
+"Edit" = "수정";
+"Delete" = "삭제";
+"Cancel" = "취소";
+"Ok" = "확인";
+"Notice" = "알림";
+"AlertMessageForWriteVC" = "색상을 선택하고, 텍스트를 입력해주세요.";

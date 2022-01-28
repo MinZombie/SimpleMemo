@@ -9,5 +9,13 @@
 "NavigationTitle" = "Notes";
 "SettingTitle" = "Setting";
 "SearchPlaceholder" = "Search";
-"AddButtonSetTitle" = "Add";
+"AddButtonSetTitle" = "Save";
 "TextViewPlaceholder" = "Please write your text here";
+"WriteViewEditTitle" = "Edit";
+"WriteViewAddTitle" = "New note";
+"Edit" = "Edit";
+"Delete" = "Delete";
+"Cancel" = "Cancel";
+"Ok" = "OK";
+"Notice" = "Notice";
+"AlertMessageForWriteVC" = "Choose a color and enter your text.";
