@@ -19,3 +19,11 @@
 "Ok" = "OK";
 "Notice" = "Notice";
 "AlertMessageForWriteVC" = "Choose a color and enter your text.";
+"BackUpFileSizeAlertTitle" = "Backup failed because not enough free space on device.";
+"NotExistFile" = "The file to be backed up does not exist.";
+"Backup" = "Backup";
+"Restore" = "Restore";
+"RestoreCompleteTitle" = "Restore is complete.";
+"RestoreCompleteMessage" = "Click the OK button to close the app.\nPlease restart the app.";
+"RestoreWrongFileSelected" = "You have selected the wrong file.";
+"MaximumTexts" = "You can enter a maximum of 172 characters.";

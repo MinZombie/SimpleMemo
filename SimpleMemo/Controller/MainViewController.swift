@@ -105,6 +105,7 @@ class MainViewController: UIViewController {
         // 서치바 설정
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
+        searchController.searchBar.tintColor = .black
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false

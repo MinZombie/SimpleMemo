@@ -19,3 +19,11 @@
 "Ok" = "확인";
 "Notice" = "알림";
 "AlertMessageForWriteVC" = "색상을 선택하고, 텍스트를 입력해주세요.";
+"BackUpFileSizeAlertTitle" = "저장 공간이 부족해서 백업에 실패했습니다.";
+"NotExistFile" = "백업 할 파일이 존재 하지 않습니다.";
+"Backup" = "백업";
+"Restore" = "복구";
+"RestoreCompleteTitle" = "복구가 완료 되었습니다.";
+"RestoreCompleteMessage" = "확인 버튼을 누르면 앱이 종료 됩니다.\n앱을 다시 실행시켜 주세요.";
+"RestoreWrongFileSelected" = "파일을 잘못 선택했습니다.";
+"MaximumTexts" = "텍스트는 최대 172자 입력 가능합니다.";

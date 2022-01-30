@@ -28,6 +28,7 @@ class AccessoryView: UIView {
     private func setUpAddButton() {
         addButton.setTitle(NSLocalizedString("AddButtonSetTitle", comment: ""), for: .normal)
         addButton.setTitleColor(.white, for: .normal)
+        addButton.setTitleColor(.white, for: .highlighted)
         addButton.layer.cornerRadius = 14
         addButton.backgroundColor = UIColor(named: "button")
         addButton.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
