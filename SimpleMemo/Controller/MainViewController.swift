@@ -105,6 +105,7 @@ class MainViewController: UIViewController {
         // 서치바 설정
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
+        searchController.searchBar.tintColor = .black
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -197,7 +198,9 @@ extension MainViewController: MainTableViewCellDelegate {
                     self?.isFiltering == true ? ($0.date == (self?.filteredData[cell.index].date)!) : ($0.date == (self?.viewModels[cell.index].date)!)
                 }
                 self?.realm.delete(memo!)
-                self?.filteredData.remove(at: cell.index)
+                if self?.isFiltering == true {
+                    self?.filteredData.remove(at: cell.index)
+                }
                 self?.tableView.reloadData()
             }
         }

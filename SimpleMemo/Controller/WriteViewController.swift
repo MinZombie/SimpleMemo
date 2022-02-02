@@ -126,8 +126,8 @@ class WriteViewController: UIViewController {
 extension WriteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         // 제한된 글자수에 도달하면 alert 보여주기
-        if textView.text.count == 172 {
-            print("텍스트를 172자 이하로 입력해주세요")
+        if textView.text.count > 172 {
+            self.createAlert(title: NSLocalizedString("MaximumTexts", comment: ""))
         }
     }
     
@@ -171,28 +171,33 @@ extension WriteViewController: AccessoryViewDelegate {
             return
         }
         
-        if viewModels == nil {
-            // 새 메모를 작성할 때
-            let data = Memo(content: text, backgroundColor: selectedColor)
-            
-            try! realm.write {
-                realm.add(data)
-            }
-        } else {
-            // 기존에 있던 메모를 수정할 때
-            try! realm.write {
-                let memo = realm.objects(Memo.self).where {
-                    $0.date == viewModels!.date
+        if text.count <= 172 {
+            if viewModels == nil {
+                // 새 메모를 작성할 때
+                let data = Memo(content: text, backgroundColor: selectedColor)
+                
+                try! realm.write {
+                    realm.add(data)
                 }
-                memo[0].content = text
-                memo[0].backgroundColor = selectedColor
-                memo[0].date = Date()
+            } else {
+                // 기존에 있던 메모를 수정할 때
+                try! realm.write {
+                    let memo = realm.objects(Memo.self).where {
+                        $0.date == viewModels!.date
+                    }
+                    memo[0].content = text
+                    memo[0].backgroundColor = selectedColor
+                    memo[0].date = Date()
+                }
+                
             }
             
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "didTapAddButton"), object: nil)
+            navigationController?.popViewController(animated: true)
+            
+        } else {
+            self.createAlert(title: NSLocalizedString("MaximumTexts", comment: ""))
         }
-        
-        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "didTapAddButton"), object: nil)
-        navigationController?.popViewController(animated: true)
     }
 }
 
