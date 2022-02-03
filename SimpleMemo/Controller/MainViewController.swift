@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var addMemoButton: UIButton!
     
     private var viewModels: [MainTableViewCell.ViewModel] = []
+    private var filteredData: [MainTableViewCell.ViewModel] = []
     private let realm = try! Realm()
     private var memos: Results<Memo>!
     private var observer: NSObjectProtocol?
@@ -25,13 +26,19 @@ class MainViewController: UIViewController {
         let isEmpty = searchController?.searchBar.text?.isEmpty == false
         return isActive && isEmpty
     }
-    private var filteredData: [MainTableViewCell.ViewModel] = []
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configure()
+        view.backgroundColor = Constants.Colors.bg
+        
+        setUpAddButton()
+        setUpTableView()
+        setUpSearchController()
+        setUpBarButtonItem()
+        setUpNavigationController()
         setUpObserver()
     }
 
@@ -82,26 +89,28 @@ class MainViewController: UIViewController {
             self.viewModels = viewModels.sorted(by: { $0.date > $1.date })
             self.tableView.reloadData()
         }
-        
-        
-        
-    }
 
-    private func configure() {
-        view.backgroundColor = UIColor(named: "BG")
-        
-        // 테이블뷰 설정
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        
-        
-        // 내비게이션 설정
-        title = NSLocalizedString("NavigationTitle", comment: "")
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = UIColor(named: "BG")
-        
+    }
+    
+    private func setUpAddButton() {
+        // 메모 추가 버튼
+        addMemoButton.setImage(Constants.Images.plus, for: .normal)
+        addMemoButton.tintColor = .white
+        addMemoButton.backgroundColor = .black
+        addMemoButton.layer.cornerRadius = addMemoButton.frame.height / 2
+        addMemoButton.addTarget(self, action: #selector(didTapAddMemoButton), for: .touchUpInside)
+    }
+    
+    private func setUpBarButtonItem() {
+        // 오른쪽 바 버튼 아이템
+        rightBarButtonItem.image = Constants.Images.gearshape
+        rightBarButtonItem.tintColor = .black
+        rightBarButtonItem.action = #selector(didTapRightBarButtonItem)
+        rightBarButtonItem.target = self
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    private func setUpSearchController() {
         // 서치바 설정
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
@@ -110,22 +119,21 @@ class MainViewController: UIViewController {
         searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
-        
-        
-        
-        // 오른쪽 바 버튼 아이템
-        rightBarButtonItem.image = UIImage(systemName: "gearshape")
-        rightBarButtonItem.tintColor = .black
-        rightBarButtonItem.action = #selector(didTapRightBarButtonItem)
-        rightBarButtonItem.target = self
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        
-        // 메모 추가 버튼
-        addMemoButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        addMemoButton.tintColor = .white
-        addMemoButton.backgroundColor = .black
-        addMemoButton.layer.cornerRadius = addMemoButton.frame.height / 2
-        addMemoButton.addTarget(self, action: #selector(didTapAddMemoButton), for: .touchUpInside)
+    }
+    
+    private func setUpNavigationController() {
+        // 내비게이션 설정
+        title = NSLocalizedString("NavigationTitle", comment: "")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barTintColor = Constants.Colors.bg
+    }
+    
+    private func setUpTableView() {
+        // 테이블뷰 설정
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
     }
     
 }

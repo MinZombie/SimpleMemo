@@ -21,7 +21,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: "BG")
+        view.backgroundColor = Constants.Colors.bg
         setUpTableView()
         setUpNavigation()
         indicator.isHidden = true

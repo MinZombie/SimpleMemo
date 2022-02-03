@@ -25,7 +25,7 @@ class WriteViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "BG")
+        view.backgroundColor = Constants.Colors.bg
         
         setUpNavigation()
         setUpTextView()
@@ -49,15 +49,6 @@ class WriteViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     
     // MARK: - Private
     @IBAction func tapBackgroundView(_ sender: Any) {
@@ -73,7 +64,6 @@ class WriteViewController: UIViewController {
 
         for button in colorButtons {
 
-            //sender == button ? (sender.isSelected = true) : (sender.isSelected = false)
             button.isSelected = (sender == button)
             
             if !button.isSelected {
@@ -99,18 +89,23 @@ class WriteViewController: UIViewController {
         buttonView.backgroundColor = .clear
     }
     
+    private func setUpAccessoryView() -> UIView {
+        guard let accessoryView = Bundle.main.loadNibNamed(AccessoryView.identifier, owner: self, options: nil)?.first as? AccessoryView else {
+            return UIView()
+        }
+        accessoryView.delegate = self
+        return accessoryView
+    }
+    
     private func setUpTextView() {
         textView.delegate = self
         textView.layer.cornerRadius = 16
         textView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        textView.font = UIFont(name: "GowunDodum-Regular", size: 15)
+        textView.font = Constants.Fonts.normal
         textView.backgroundColor = .white
         textView.text = textViewPlaceholder
         textView.textColor = .lightGray
-        
-        guard let accessoryView = Bundle.main.loadNibNamed(AccessoryView.identifier, owner: self, options: nil)?.first as? AccessoryView else { return }
-        accessoryView.delegate = self
-        textView.inputAccessoryView = accessoryView
+        textView.inputAccessoryView = setUpAccessoryView()
     }
     
     private func setUpNavigation() {

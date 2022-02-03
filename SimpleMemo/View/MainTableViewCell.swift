@@ -38,10 +38,8 @@ class MainTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        configure()
+        setUpTableViewCell()
         setUpContainerView()
-        backgroundColor = .clear
-        selectionStyle = .none
         setUpOptionButton()
     }
 
@@ -79,20 +77,21 @@ class MainTableViewCell: UITableViewCell {
         viewContainer.layer.shadowOpacity = 0.3
         viewContainer.layer.shadowColor = UIColor.black.cgColor
         viewContainer.layer.shadowRadius = 4
-        viewContainer.backgroundColor = UIColor(named: "Green")
+        viewContainer.backgroundColor = Constants.Colors.green
     }
     
-    private func configure() {
-        
-        
+    private func setUpTableViewCell() {
+        backgroundColor = .clear
+        selectionStyle = .none
         bodyText.numberOfLines = 0
-        bodyText.font = UIFont(name: "GowunDodum-Regular", size: 15)
+        bodyText.font = Constants.Fonts.normal
         date.font = .systemFont(ofSize: 11, weight: .thin)
     }
     
+    
     private func setUpOptionButton() {
-        optionButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        optionButton.tintColor = UIColor(named: "content")
+        optionButton.setImage(Constants.Images.ellipsis, for: .normal)
+        optionButton.tintColor = Constants.Colors.content
         optionButton.backgroundColor = .clear
         optionButton.addTarget(self, action: #selector(didTapOptionButton(_:)), for: .touchUpInside)
     }

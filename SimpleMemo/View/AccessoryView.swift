@@ -30,7 +30,7 @@ class AccessoryView: UIView {
         addButton.setTitleColor(.white, for: .normal)
         addButton.setTitleColor(.white, for: .highlighted)
         addButton.layer.cornerRadius = 14
-        addButton.backgroundColor = UIColor(named: "button")
+        addButton.backgroundColor = Constants.Colors.button
         addButton.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
     }
     
