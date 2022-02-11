@@ -13,6 +13,13 @@ extension Notification.Name {
 }
 
 extension UIViewController {
+    /// alert 생성을 도와주는 함수
+    /// - Parameters:
+    ///     - title: alert의 제목
+    ///     - message: alert의 내용
+    ///     - okTitle: 확인 버튼 제목
+    ///     - okHandler: 확인 버튼을 누르면 실행 할 블럭
+    ///     - completion: alert 종류 후 실행 할 블럭
     func createAlert(
         title: String?,
         message: String? = nil,

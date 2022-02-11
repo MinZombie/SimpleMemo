@@ -15,9 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        /// realm 파일이 있는 기본 경로
         let defaultRealm = Realm.Configuration.defaultConfiguration.fileURL!
+        
+        /// group 경로
         let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.headingtodev.simplememo")
+        
+        /// group에 realm 파일 추가하면 완성되는 경로
         let realmURL = container?.appendingPathComponent("default.realm")
+        
+        /// config 초기화
         var config: Realm.Configuration!
 
         if FileManager.default.fileExists(atPath: defaultRealm.path) {
@@ -36,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
              config = Realm.Configuration(fileURL: realmURL, schemaVersion: 1)
         }
-
+        
+        // realm 기본 설정을 group에 있는 realm으로 설정
         Realm.Configuration.defaultConfiguration = config
         
         return true

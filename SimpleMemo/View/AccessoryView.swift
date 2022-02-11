@@ -7,15 +7,20 @@
 
 import UIKit
 
+/// 액세서리 뷰의 버튼 델리게이트
 protocol AccessoryViewDelegate: AnyObject {
     func AccessoryViewDidTapAddButton(view: AccessoryView)
 }
 
+/// 액세서리 뷰
 class AccessoryView: UIView {
     
     @IBOutlet weak var addButton: UIButton!
     
+    /// 뷰 identifier
     static let identifier = "AccessoryView"
+    
+    /// 델리게이트
     weak var delegate: AccessoryViewDelegate?
     
     
@@ -25,6 +30,7 @@ class AccessoryView: UIView {
         setUpAddButton()
     }
     
+    /// addButton 설정
     private func setUpAddButton() {
         addButton.setTitle(NSLocalizedString("AddButtonSetTitle", comment: ""), for: .normal)
         addButton.setTitleColor(.white, for: .normal)
@@ -34,6 +40,7 @@ class AccessoryView: UIView {
         addButton.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
     }
     
+    /// addButton 탭 했을 때 호출
     @objc func didTapAddButton(_ sender: UIButton) {
         delegate?.AccessoryViewDidTapAddButton(view: self)
     }

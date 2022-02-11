@@ -8,18 +8,30 @@
 import UIKit
 import RealmSwift
 
+/// 메모를 작성하거나 수정하는 뷰컨트롤러
 class WriteViewController: UIViewController {
+    // MARK: - Properties
     
+    /// 텍스트 입력 받는 텍스트 뷰
     @IBOutlet weak var textView: UITextView!
+    
+    /// 컬러 버튼 담는 뷰
     @IBOutlet weak var buttonView: UIView!
+    
+    /// 색깔 배열
     @IBOutlet var colorButtons: [UIButton]!
     
+    /// realm 인스턴스
     let realm = try! Realm()
     
+    /// 뷰 이동을 위한 identifier
     static let identifier = "WriteViewController"
     private var textViewPlaceholder = NSLocalizedString("TextViewPlaceholder", comment: "")
+    
+    /// 현재 선택된 색깔을 저장하는 변수
     private var selectedColor = ""
     
+    /// 새로운 메모를 추가 할지 아니면 메모를 수정할지 판단 하는 변수.
     var viewModels: MainTableViewCell.ViewModel?
     
     // MARK: - Lifecycle
@@ -31,6 +43,7 @@ class WriteViewController: UIViewController {
         setUpTextView()
         setUpColorButtons()
         
+        // viewModels에 데이터가 있으면 텍스트뷰에 전 화면에서 선택된 셀의 데이터를 가져와 설정
         switch viewModels {
         case .some(let data):
             title = NSLocalizedString("WriteViewEditTitle", comment: "")
@@ -51,12 +64,14 @@ class WriteViewController: UIViewController {
     
     
     // MARK: - Private
+    
+    /// 뷰 탭 했을 때 키보드 내리는 함수
     @IBAction func tapBackgroundView(_ sender: Any) {
         view.endEditing(true)
     }
     
     
-    
+    /// 색깔 선택 했을 때 호출 되는 함수
     @objc private func didTapColorButton(_ sender: UIButton) {
         if let color = sender.titleLabel?.text {
             self.selectedColor = color
@@ -76,6 +91,7 @@ class WriteViewController: UIViewController {
         }
     }
     
+    /// 색깔 버튼 설정
     private func setUpColorButtons() {
         for button in colorButtons {
             button.setTitle("", for: .normal)
@@ -89,6 +105,7 @@ class WriteViewController: UIViewController {
         buttonView.backgroundColor = .clear
     }
     
+    /// 악세사리 뷰 설정
     private func setUpAccessoryView() -> UIView {
         guard let accessoryView = Bundle.main.loadNibNamed(AccessoryView.identifier, owner: self, options: nil)?.first as? AccessoryView else {
             return UIView()
@@ -97,6 +114,7 @@ class WriteViewController: UIViewController {
         return accessoryView
     }
     
+    /// 텍스트 뷰 설정
     private func setUpTextView() {
         textView.delegate = self
         textView.layer.cornerRadius = 16
@@ -108,6 +126,7 @@ class WriteViewController: UIViewController {
         textView.inputAccessoryView = setUpAccessoryView()
     }
     
+    /// 내비게이션 설정
     private func setUpNavigation() {
         
         navigationItem.largeTitleDisplayMode = .never
@@ -118,6 +137,7 @@ class WriteViewController: UIViewController {
 
 }
 
+// MARK: - UITextViewDelegate
 extension WriteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         // 제한된 글자수에 도달하면 alert 보여주기
@@ -126,8 +146,8 @@ extension WriteViewController: UITextViewDelegate {
         }
     }
     
-    // 텍스트뷰에 placeholder를 지움(텍스트뷰에 텍스트를 쓰기 시작하니까)
     func textViewDidBeginEditing(_ textView: UITextView) {
+        // 텍스트뷰에 placeholder를 지움
         if textView.textColor == .lightGray {
             textView.text = nil
             textView.textColor = .black
@@ -144,7 +164,9 @@ extension WriteViewController: UITextViewDelegate {
 
 }
 
+// MARK: - AccessoryViewDelegate
 extension WriteViewController: AccessoryViewDelegate {
+    /// 악세사리 뷰에 있는 버튼 탭 했을 때 호출 되는 함수.
     func AccessoryViewDidTapAddButton(view: AccessoryView) {
 
         guard let text = textView.text,
@@ -182,6 +204,7 @@ extension WriteViewController: AccessoryViewDelegate {
                     }
                     memo[0].content = text
                     memo[0].backgroundColor = selectedColor
+                    // 메모를 수정하면 리스트 맨위로 올리기 위해서 새로운 날짜 저장
                     memo[0].date = Date()
                 }
                 
@@ -191,6 +214,7 @@ extension WriteViewController: AccessoryViewDelegate {
             navigationController?.popViewController(animated: true)
             
         } else {
+            // 172자 초과 했는데 버튼을 눌렀을 때
             self.createAlert(title: NSLocalizedString("MaximumTexts", comment: ""))
         }
     }

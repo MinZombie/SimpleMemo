@@ -8,6 +8,7 @@
 import RealmSwift
 import UIKit
 
+/// realm 메모 모델
 class Memo: Object, Identifiable {
     @Persisted var date: Date = Date()
     @Persisted var content: String

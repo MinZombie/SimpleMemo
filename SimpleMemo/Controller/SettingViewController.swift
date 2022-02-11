@@ -10,14 +10,17 @@ import Zip
 import MobileCoreServices
 import UniformTypeIdentifiers
 
+/// 환경설정 하는 뷰컨트롤러
 class SettingViewController: UIViewController {
     
+    // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    /// 스토리보드 ID, 셀 identifier
     static let identifier = "SettingViewController"
 
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +30,9 @@ class SettingViewController: UIViewController {
         indicator.isHidden = true
     }
     
+    // MARK: - Private
+    
+    /// 인디케이터 설정
     private func setUpIndicator(_ bool: Bool) {
         if bool {
             self.indicator.isHidden = false
@@ -39,6 +45,7 @@ class SettingViewController: UIViewController {
         }
     }
     
+    /// 내비게이션 설정
     private func setUpNavigation() {
         title = NSLocalizedString("SettingTitle", comment: "")
         navigationItem.largeTitleDisplayMode = .never
@@ -46,6 +53,7 @@ class SettingViewController: UIViewController {
         
     }
     
+    /// 테이블 뷰 설정
     private func setUpTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,7 +62,10 @@ class SettingViewController: UIViewController {
 
 }
 
+// MARK: - UIDocumentPickerDelegate
 extension SettingViewController: UIDocumentPickerDelegate {
+    /// 앱의 폴더 경로 가져오기
+    /// - Returns: 옵셔널 문자열
     private func documentDirectoryPath() -> String? {
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
@@ -67,6 +78,7 @@ extension SettingViewController: UIDocumentPickerDelegate {
         }
     }
     
+    /// 데이터 백업을 위한 Activity 뷰 컨트롤러 호출
     private func presentActivityViewController() {
         //압축 파일 경로 가져오기
         let fileName = (documentDirectoryPath()! as NSString).appendingPathComponent("Simple_Memo_Backup.zip")
@@ -87,19 +99,22 @@ extension SettingViewController: UIDocumentPickerDelegate {
         self.present(vc, animated: true)
     }
     
+    /// 백업 셀을 탭 했을 때 호출
     private func backUp() {
-        /// Doument 폴더 위치
+        // Doument 폴더 위치
         guard let path = documentDirectoryPath() else { return }
-        /// 저장공간 확인을 위한 url
+        // 저장공간 확인을 위한 url
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
         var urlPaths = [URL]()
-        // 압축 할 파일 경로
+        // 압축 할 파일
         let realm = (path as NSString).appendingPathComponent("default.realm")
         
         do {
+            // 압축 할 파일 크기
             let fileSize = try (FileManager.default.attributesOfItem(atPath: realm) as NSDictionary).fileSize()
             let values = try url.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+            // 사용 가능한 저장 공간
             guard let capacity = values.volumeAvailableCapacityForImportantUsage else {
                 print("volumeAvailableCapacityForImportantUsage not available")
                 return
@@ -145,6 +160,7 @@ extension SettingViewController: UIDocumentPickerDelegate {
         }
     }
     
+    /// 복구 셀 탭 했을 때 호출
     private func restore() {
         // 복구 1 - 파일앱 열기 + 어떤 확장자를 보여줄지 선택
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.zip], asCopy: true)
@@ -153,6 +169,10 @@ extension SettingViewController: UIDocumentPickerDelegate {
         self.present(documentPicker, animated: true)
     }
     
+    /// 선택한 zip 파일을 압축해제 하는 함수
+    /// - Parameters:
+    ///     - directory: 얍축 해제 할 위치의 URL
+    ///     - selectedFile: 선택한 zip 파일의 URL
     private func unzip(directory: URL, selectedFile: URL) {
 
         do {
@@ -165,12 +185,14 @@ extension SettingViewController: UIDocumentPickerDelegate {
             }, fileOutputHandler: { [weak self] _ in
                 // 복구 성공 했을 때 인디케이터 숨기고, 복구 완료 alert 보여주기
                 self?.setUpIndicator(false)
-
+                
+                // 앱 종료 안내창 보여주기
                 self?.createAlert(
                     title: NSLocalizedString("RestoreCompleteTitle", comment: ""),
                     message: NSLocalizedString("RestoreCompleteMessage", comment: ""),
                     okTitle: NSLocalizedString("Ok", comment: "")
                 ) { _ in
+                    // 앱 종료 하는 코드
                     UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         exit(0)
@@ -201,6 +223,7 @@ extension SettingViewController: UIDocumentPickerDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
