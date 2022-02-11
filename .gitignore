@@ -117,6 +117,7 @@ iOSInjectionProject/
 
 ### Xcode ###
 .ttf
+*.entitlements
 
 ## Xcode 8 and earlier
 

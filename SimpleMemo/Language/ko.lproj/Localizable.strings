@@ -27,3 +27,5 @@
 "RestoreCompleteMessage" = "확인 버튼을 누르면 앱이 종료 됩니다.\n앱을 다시 실행시켜 주세요.";
 "RestoreWrongFileSelected" = "파일을 잘못 선택했습니다.";
 "MaximumTexts" = "텍스트는 최대 172자 입력 가능합니다.";
+"WidgetConfigurationDisplayName" = "메모 - 쉽고 간단하게";
+"WidgetDescription" = "쉽게 메모를 확인해보세요!";

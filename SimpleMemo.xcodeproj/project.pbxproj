@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90C956727B286CA006C19B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A981864027953C210030CED1 /* Localizable.strings */; };
 		A917CEFF279A7ECA0078C16A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A917CEFE279A7ECA0078C16A /* Realm */; };
 		A917CF01279A7ECA0078C16A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A917CF00279A7ECA0078C16A /* RealmSwift */; };
 		A917CF04279A7F450078C16A /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917CF03279A7F450078C16A /* Memo.swift */; };
@@ -14,6 +15,13 @@
 		A917CF08279D69DE0078C16A /* AccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A917CF07279D69DE0078C16A /* AccessoryView.xib */; };
 		A917CF0E279EE3C00078C16A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917CF0D279EE3C00078C16A /* Extension.swift */; };
 		A917CF1A27A1662E0078C16A /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = A917CF1927A1662E0078C16A /* Zip */; };
+		A948028227B2B33700173770 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A948028127B2B33700173770 /* Realm */; };
+		A948028427B2B33A00173770 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A948028327B2B33A00173770 /* RealmSwift */; };
+		A9640B5C27AC25BA00110083 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9640B5B27AC25BA00110083 /* WidgetKit.framework */; };
+		A9640B5E27AC25BA00110083 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9640B5D27AC25BA00110083 /* SwiftUI.framework */; };
+		A9640B6127AC25BA00110083 /* SimpleMemo_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9640B6027AC25BA00110083 /* SimpleMemo_Widget.swift */; };
+		A9640B6427AC25BB00110083 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9640B6327AC25BB00110083 /* Assets.xcassets */; };
+		A9640B6A27AC25BB00110083 /* SimpleMemo WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9640B5927AC25BA00110083 /* SimpleMemo WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A96A7D9F27AAB5C700A6F0E6 /* GowunDodum-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A96A7D9E27AAB5C700A6F0E6 /* GowunDodum-Regular.ttf */; };
 		A9818628279538C70030CED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818627279538C70030CED1 /* AppDelegate.swift */; };
 		A981862A279538C70030CED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818629279538C70030CED1 /* SceneDelegate.swift */; };
@@ -25,14 +33,56 @@
 		A9818669279576520030CED1 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818668279576520030CED1 /* MainTableViewCell.swift */; };
 		A981866B2795B02D0030CED1 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981866A2795B02D0030CED1 /* WriteViewController.swift */; };
 		A981866D2795B2390030CED1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981866C2795B2390030CED1 /* SettingViewController.swift */; };
+		A98CA85027ACE83000A1D8BE /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917CF03279A7F450078C16A /* Memo.swift */; };
+		A98CA85227ACF69900A1D8BE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98CA85127ACF69900A1D8BE /* RealmManager.swift */; };
+		A98CA85327ACF69900A1D8BE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98CA85127ACF69900A1D8BE /* RealmManager.swift */; };
+		A98CA85427AD0CBF00A1D8BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9818630279538C80030CED1 /* Assets.xcassets */; };
+		A98CA85527AD1EF800A1D8BE /* GowunDodum-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A96A7D9E27AAB5C700A6F0E6 /* GowunDodum-Regular.ttf */; };
+		A98CA85627AD1EFD00A1D8BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4EF7027998C99003C7231 /* Constants.swift */; };
+		A9D2C75627B3614100FF10DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9D2C75827B3614100FF10DE /* InfoPlist.strings */; };
+		A9D2C75F27B36C6A00FF10DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9D2C75827B3614100FF10DE /* InfoPlist.strings */; };
 		A9D4EF7127998C99003C7231 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4EF7027998C99003C7231 /* Constants.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9640B6827AC25BB00110083 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A981861C279538C70030CED1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9640B5827AC25BA00110083;
+			remoteInfo = "SimpleMemo WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A9640B6B27AC25BB00110083 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A9640B6A27AC25BB00110083 /* SimpleMemo WidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A917CF03279A7F450078C16A /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		A917CF05279D69B10078C16A /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		A917CF07279D69DE0078C16A /* AccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessoryView.xib; sourceTree = "<group>"; };
 		A917CF0D279EE3C00078C16A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		A9640B5927AC25BA00110083 /* SimpleMemo WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SimpleMemo WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9640B5B27AC25BA00110083 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A9640B5D27AC25BA00110083 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A9640B6027AC25BA00110083 /* SimpleMemo_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMemo_Widget.swift; sourceTree = "<group>"; };
+		A9640B6327AC25BB00110083 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9640B6527AC25BB00110083 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9640B6F27AC28C200110083 /* SimpleMemo WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SimpleMemo WidgetExtension.entitlements"; sourceTree = "<group>"; };
+		A9640B7027ACC7DE00110083 /* SimpleMemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleMemo.entitlements; sourceTree = "<group>"; };
+		A9640B7127ACCD5F00110083 /* SimpleMemo WidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SimpleMemo WidgetExtensionRelease.entitlements"; sourceTree = "<group>"; };
+		A9640B7227ACCD8800110083 /* SimpleMemoRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleMemoRelease.entitlements; sourceTree = "<group>"; };
 		A96A7D9E27AAB5C700A6F0E6 /* GowunDodum-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GowunDodum-Regular.ttf"; sourceTree = "<group>"; };
 		A9818624279538C70030CED1 /* SimpleMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9818627279538C70030CED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,16 +91,30 @@
 		A981862E279538C70030CED1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9818630279538C80030CED1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9818633279538C80030CED1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A9818635279538C80030CED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A981863F27953C210030CED1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A981864127953C5C0030CED1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9818668279576520030CED1 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		A981866A2795B02D0030CED1 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		A981866C2795B2390030CED1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		A98CA85127ACF69900A1D8BE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		A9D2C75727B3614100FF10DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A9D2C75927B3614200FF10DE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A9D2C75C27B36ACE00FF10DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9D4EF7027998C99003C7231 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A9640B5627AC25BA00110083 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A948028427B2B33A00173770 /* RealmSwift in Frameworks */,
+				A948028227B2B33700173770 /* Realm in Frameworks */,
+				A9640B5E27AC25BA00110083 /* SwiftUI.framework in Frameworks */,
+				A9640B5C27AC25BA00110083 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9818621279538C70030CED1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A90C956527AF6EC1006C19B2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA85127ACF69900A1D8BE /* RealmManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		A917CF02279A7F390078C16A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,10 +144,33 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A9640B5A27AC25BA00110083 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9640B5B27AC25BA00110083 /* WidgetKit.framework */,
+				A9640B5D27AC25BA00110083 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9640B5F27AC25BA00110083 /* SimpleMemo Widget */ = {
+			isa = PBXGroup;
+			children = (
+				A9640B6027AC25BA00110083 /* SimpleMemo_Widget.swift */,
+				A9640B6327AC25BB00110083 /* Assets.xcassets */,
+				A9640B6527AC25BB00110083 /* Info.plist */,
+			);
+			path = "SimpleMemo Widget";
+			sourceTree = "<group>";
+		};
 		A981861B279538C70030CED1 = {
 			isa = PBXGroup;
 			children = (
+				A9640B7127ACCD5F00110083 /* SimpleMemo WidgetExtensionRelease.entitlements */,
+				A9640B6F27AC28C200110083 /* SimpleMemo WidgetExtension.entitlements */,
 				A9818626279538C70030CED1 /* SimpleMemo */,
+				A9640B5F27AC25BA00110083 /* SimpleMemo Widget */,
+				A9640B5A27AC25BA00110083 /* Frameworks */,
 				A9818625279538C70030CED1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				A9818624279538C70030CED1 /* SimpleMemo.app */,
+				A9640B5927AC25BA00110083 /* SimpleMemo WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,13 +187,16 @@
 		A9818626279538C70030CED1 /* SimpleMemo */ = {
 			isa = PBXGroup;
 			children = (
+				A9640B7227ACCD8800110083 /* SimpleMemoRelease.entitlements */,
+				A9640B7027ACC7DE00110083 /* SimpleMemo.entitlements */,
+				A9D2C75C27B36ACE00FF10DE /* Info.plist */,
+				A90C956527AF6EC1006C19B2 /* Manager */,
 				A917CF02279A7F390078C16A /* Model */,
 				A98186652795660F0030CED1 /* Resource */,
 				A981864427953E9B0030CED1 /* View */,
 				A981864327953E930030CED1 /* Controller */,
 				A981864227953E760030CED1 /* Other */,
 				A981863B27953BDE0030CED1 /* Language */,
-				A9818635279538C80030CED1 /* Info.plist */,
 			);
 			path = SimpleMemo;
 			sourceTree = "<group>";
@@ -106,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				A981864027953C210030CED1 /* Localizable.strings */,
+				A9D2C75827B3614100FF10DE /* InfoPlist.strings */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -155,6 +255,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A9640B5827AC25BA00110083 /* SimpleMemo WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9640B6E27AC25BB00110083 /* Build configuration list for PBXNativeTarget "SimpleMemo WidgetExtension" */;
+			buildPhases = (
+				A9640B5527AC25BA00110083 /* Sources */,
+				A9640B5627AC25BA00110083 /* Frameworks */,
+				A9640B5727AC25BA00110083 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SimpleMemo WidgetExtension";
+			packageProductDependencies = (
+				A948028127B2B33700173770 /* Realm */,
+				A948028327B2B33A00173770 /* RealmSwift */,
+			);
+			productName = "SimpleMemo WidgetExtension";
+			productReference = A9640B5927AC25BA00110083 /* SimpleMemo WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A9818623279538C70030CED1 /* SimpleMemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9818638279538C80030CED1 /* Build configuration list for PBXNativeTarget "SimpleMemo" */;
@@ -162,10 +283,12 @@
 				A9818620279538C70030CED1 /* Sources */,
 				A9818621279538C70030CED1 /* Frameworks */,
 				A9818622279538C70030CED1 /* Resources */,
+				A9640B6B27AC25BB00110083 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A9640B6927AC25BB00110083 /* PBXTargetDependency */,
 			);
 			name = SimpleMemo;
 			packageProductDependencies = (
@@ -187,6 +310,9 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					A9640B5827AC25BA00110083 = {
+						CreatedOnToolsVersion = 13.0;
+					};
 					A9818623279538C70030CED1 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -211,16 +337,30 @@
 			projectRoot = "";
 			targets = (
 				A9818623279538C70030CED1 /* SimpleMemo */,
+				A9640B5827AC25BA00110083 /* SimpleMemo WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A9640B5727AC25BA00110083 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98CA85427AD0CBF00A1D8BE /* Assets.xcassets in Resources */,
+				A90C956727B286CA006C19B2 /* Localizable.strings in Resources */,
+				A9640B6427AC25BB00110083 /* Assets.xcassets in Resources */,
+				A98CA85527AD1EF800A1D8BE /* GowunDodum-Regular.ttf in Resources */,
+				A9D2C75F27B36C6A00FF10DE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9818622279538C70030CED1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A9818634279538C80030CED1 /* LaunchScreen.storyboard in Resources */,
+				A9D2C75627B3614100FF10DE /* InfoPlist.strings in Resources */,
 				A981863E27953C210030CED1 /* Localizable.strings in Resources */,
 				A96A7D9F27AAB5C700A6F0E6 /* GowunDodum-Regular.ttf in Resources */,
 				A9818631279538C80030CED1 /* Assets.xcassets in Resources */,
@@ -232,6 +372,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A9640B5527AC25BA00110083 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98CA85627AD1EFD00A1D8BE /* Constants.swift in Sources */,
+				A98CA85027ACE83000A1D8BE /* Memo.swift in Sources */,
+				A98CA85327ACF69900A1D8BE /* RealmManager.swift in Sources */,
+				A9640B6127AC25BA00110083 /* SimpleMemo_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9818620279538C70030CED1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +392,7 @@
 				A9818669279576520030CED1 /* MainTableViewCell.swift in Sources */,
 				A917CF04279A7F450078C16A /* Memo.swift in Sources */,
 				A917CF06279D69B10078C16A /* AccessoryView.swift in Sources */,
+				A98CA85227ACF69900A1D8BE /* RealmManager.swift in Sources */,
 				A917CF0E279EE3C00078C16A /* Extension.swift in Sources */,
 				A981866B2795B02D0030CED1 /* WriteViewController.swift in Sources */,
 				A9D4EF7127998C99003C7231 /* Constants.swift in Sources */,
@@ -250,6 +402,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9640B6927AC25BB00110083 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9640B5827AC25BA00110083 /* SimpleMemo WidgetExtension */;
+			targetProxy = A9640B6827AC25BB00110083 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A981862D279538C70030CED1 /* Main.storyboard */ = {
@@ -277,9 +437,74 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		A9D2C75827B3614100FF10DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9D2C75727B3614100FF10DE /* en */,
+				A9D2C75927B3614200FF10DE /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A9640B6C27AC25BB00110083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "SimpleMemo WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = J2BXCFFMKP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SimpleMemo Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SimpleMemo Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.headingtodev.SimpleMemo.SimpleMemo-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A9640B6D27AC25BB00110083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "SimpleMemo WidgetExtensionRelease.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = J2BXCFFMKP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SimpleMemo Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SimpleMemo Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.headingtodev.SimpleMemo.SimpleMemo-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		A9818636279538C80030CED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,6 +616,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -401,10 +627,12 @@
 		A9818639279538C80030CED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SimpleMemo/SimpleMemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = J2BXCFFMKP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleMemo/Info.plist;
@@ -420,7 +648,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headingtodev.SimpleMemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -432,10 +660,12 @@
 		A981863A279538C80030CED1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SimpleMemo/SimpleMemoRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = J2BXCFFMKP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleMemo/Info.plist;
@@ -451,7 +681,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headingtodev.SimpleMemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -463,6 +693,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A9640B6E27AC25BB00110083 /* Build configuration list for PBXNativeTarget "SimpleMemo WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9640B6C27AC25BB00110083 /* Debug */,
+				A9640B6D27AC25BB00110083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A981861F279538C70030CED1 /* Build configuration list for PBXProject "SimpleMemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -517,6 +756,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A917CF1827A1662E0078C16A /* XCRemoteSwiftPackageReference "Zip" */;
 			productName = Zip;
+		};
+		A948028127B2B33700173770 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A917CEFD279A7ECA0078C16A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		A948028327B2B33A00173770 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A917CEFD279A7ECA0078C16A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -27,3 +27,5 @@
 "RestoreCompleteMessage" = "Click the OK button to close the app.\nPlease restart the app.";
 "RestoreWrongFileSelected" = "You have selected the wrong file.";
 "MaximumTexts" = "You can enter a maximum of 172 characters.";
+"WidgetConfigurationDisplayName" = "Note - simple and easy";
+"WidgetDescription" = "Easily check your notes!";

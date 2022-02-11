@@ -8,7 +8,7 @@
 import RealmSwift
 import UIKit
 
-class Memo: Object {
+class Memo: Object, Identifiable {
     @Persisted var date: Date = Date()
     @Persisted var content: String
     @Persisted var backgroundColor: String
@@ -18,4 +18,6 @@ class Memo: Object {
         self.content = content
         self.backgroundColor = backgroundColor
     }
+
+    
 }

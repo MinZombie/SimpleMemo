@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import WidgetKit
 
 class MainViewController: UIViewController {
 
@@ -66,6 +67,7 @@ class MainViewController: UIViewController {
             case .update(let data, _, _, _):
 
                 self?.fetchMemos(with: data)
+                WidgetCenter.shared.reloadAllTimelines()
                 
             case .error(let error):
                 print(error)
