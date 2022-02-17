@@ -21,9 +21,6 @@ class WriteViewController: UIViewController {
     /// 색깔 배열
     @IBOutlet var colorButtons: [UIButton]!
     
-    /// realm 인스턴스
-    //let realm = try! Realm()
-    
     /// 뷰 이동을 위한 identifier
     static let identifier = "WriteViewController"
     private var textViewPlaceholder = NSLocalizedString("TextViewPlaceholder", comment: "")
@@ -200,7 +197,6 @@ extension WriteViewController: AccessoryViewDelegate {
                 RealmManager.shared.editMemo(date: viewModels!.date, text: text, selectedColor: selectedColor)
             }
             
-            //NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "didTapAddButton"), object: nil)
             navigationController?.popViewController(animated: true)
             
         } else {

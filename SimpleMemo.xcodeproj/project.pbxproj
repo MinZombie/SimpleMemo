@@ -210,7 +210,6 @@
 			children = (
 				A9818627279538C70030CED1 /* AppDelegate.swift */,
 				A9818629279538C70030CED1 /* SceneDelegate.swift */,
-				A9818630279538C80030CED1 /* Assets.xcassets */,
 				A9D4EF7027998C99003C7231 /* Constants.swift */,
 				A917CF0D279EE3C00078C16A /* Extension.swift */,
 			);
@@ -242,6 +241,7 @@
 		A98186652795660F0030CED1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A9818630279538C80030CED1 /* Assets.xcassets */,
 				A96A7D9E27AAB5C700A6F0E6 /* GowunDodum-Regular.ttf */,
 			);
 			path = Resource;
