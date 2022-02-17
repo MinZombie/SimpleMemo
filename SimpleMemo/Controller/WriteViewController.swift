@@ -22,7 +22,7 @@ class WriteViewController: UIViewController {
     @IBOutlet var colorButtons: [UIButton]!
     
     /// realm 인스턴스
-    let realm = try! Realm()
+    //let realm = try! Realm()
     
     /// 뷰 이동을 위한 identifier
     static let identifier = "WriteViewController"
@@ -193,24 +193,14 @@ extension WriteViewController: AccessoryViewDelegate {
                 // 새 메모를 작성할 때
                 let data = Memo(content: text, backgroundColor: selectedColor)
                 
-                try! realm.write {
-                    realm.add(data)
-                }
+                RealmManager.shared.addMemo(memo: data)
+                
             } else {
                 // 기존에 있던 메모를 수정할 때
-                try! realm.write {
-                    let memo = realm.objects(Memo.self).where {
-                        $0.date == viewModels!.date
-                    }
-                    memo[0].content = text
-                    memo[0].backgroundColor = selectedColor
-                    // 메모를 수정하면 리스트 맨위로 올리기 위해서 새로운 날짜 저장
-                    memo[0].date = Date()
-                }
-                
+                RealmManager.shared.editMemo(date: viewModels!.date, text: text, selectedColor: selectedColor)
             }
             
-            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "didTapAddButton"), object: nil)
+            //NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "didTapAddButton"), object: nil)
             navigationController?.popViewController(animated: true)
             
         } else {

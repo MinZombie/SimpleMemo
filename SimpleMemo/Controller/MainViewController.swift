@@ -28,12 +28,6 @@ class MainViewController: UIViewController {
     /// 검색 결과 데이터
     private var filteredData: [MainTableViewCell.ViewModel] = []
     
-    /// realm 인스턴스
-    private let realm = try! Realm()
-    
-    /// realm에 저장 되어 있는 Memo 객체
-    private var memos: Results<Memo>!
-    
     /// 메모 리스트 업데이트를 위한 옵저버
     private var observer: NSObjectProtocol?
     
@@ -77,9 +71,8 @@ class MainViewController: UIViewController {
     
     /// 옵저버 설정
     private func setUpObserver() {
-        memos = realm.objects(Memo.self)
         
-        observer = memos.observe { [weak self] changes in
+        observer = RealmManager.shared.memos.observe { [weak self] changes in
             switch changes {
             case .initial(let data):
                 
@@ -101,18 +94,18 @@ class MainViewController: UIViewController {
     
     /// realm에서 메모 데이터를 불러오는 함수
     private func fetchMemos(with data: Results<Memo>) {
-        var viewModels = [MainTableViewCell.ViewModel]()
+        var temp = [MainTableViewCell.ViewModel]()
         
         
         viewModels.removeAll()
         
         for memo in data {
-            viewModels.append(
+            temp.append(
                 .init(bodyText: memo.content, date: memo.date, backgroundColor: memo.backgroundColor)
             )
         }
         DispatchQueue.main.async {
-            self.viewModels = viewModels.sorted(by: { $0.date > $1.date })
+            self.viewModels = temp.sorted(by: { $0.date > $1.date })
             self.tableView.reloadData()
         }
 
@@ -206,7 +199,7 @@ extension MainViewController: UISearchResultsUpdating {
             return
         }
         var tempArr = [MainTableViewCell.ViewModel]()
-        let result = realm.objects(Memo.self).filter("content CONTAINS[c] '\(text)'")
+        let result = RealmManager.shared.memos.filter("content CONTAINS[c] '\(text)'")
         
         for item in result {
             tempArr.append(
@@ -238,19 +231,20 @@ extension MainViewController: MainTableViewCellDelegate {
         /// 메모를 삭제 하는 액션.
         let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
             
-            try! self?.realm.write {
-                // 선택한 셀의 데이터와 realm에 저장 돼 있는 데이터가 맞는지 날짜를 통해 확인
-                let memo = self?.realm.objects(Memo.self).where {
-                    self?.isFiltering == true ? ($0.date == (self?.filteredData[cell.index].date)!) : ($0.date == (self?.viewModels[cell.index].date)!)
-                }
-                self?.realm.delete(memo!)
+            guard let self = self else { return }
+            
+            // 검색해서 나온 메모를 삭제
+            if self.isFiltering == true {
                 
-                // 검색중 이라면 검색 결과 셀을 삭제
-                if self?.isFiltering == true {
-                    self?.filteredData.remove(at: cell.index)
-                }
-                self?.tableView.reloadData()
+                RealmManager.shared.deleteMemo(date: self.filteredData[cell.index].date)
+                self.filteredData.remove(at: cell.index)
+                
+            } else {
+                // 홈화면에 있는 메모 리스트에서 삭제
+                RealmManager.shared.deleteMemo(date: self.viewModels[cell.index].date)
             }
+
+            
         }
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
