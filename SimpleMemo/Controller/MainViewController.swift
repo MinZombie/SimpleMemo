@@ -22,6 +22,12 @@ class MainViewController: UIViewController {
     /// WriteViewController로 이동하는 버튼
     @IBOutlet weak var addMemoButton: UIButton!
     
+    /// addMemoButton 애니메이션에 사용하는 width 오토레이아웃
+    @IBOutlet weak var addButtonWidthConstraint: NSLayoutConstraint!
+    
+    /// 스크롤 offset 변수. 이 변수와 현재 스크롤 될 때 나타나는 offset 변수를 비교해서 스크롤 방향을 유추.
+    private var lastContentOffset: CGFloat = 0
+    
     /// 모든 메모 데이터
     private var viewModels: [MainTableViewCell.ViewModel] = []
     
@@ -114,6 +120,7 @@ class MainViewController: UIViewController {
     /// addButton 설정
     private func setUpAddButton() {
         addMemoButton.setImage(Constants.Images.plus, for: .normal)
+        addMemoButton.setTitle(" " + NSLocalizedString("Add", comment: ""), for: .normal)
         addMemoButton.tintColor = .white
         addMemoButton.backgroundColor = .black
         addMemoButton.layer.cornerRadius = addMemoButton.frame.height / 2
@@ -188,7 +195,28 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentYOffset = scrollView.contentOffset.y
+
+        UIView.animate(withDuration: 0.5) {
+            if self.lastContentOffset > currentYOffset && self.lastContentOffset < scrollView.contentSize.height - scrollView.frame.size.height {
+                
+                self.addButtonWidthConstraint.constant = 100
+                self.addMemoButton.setTitle(" " + NSLocalizedString("Add", comment: ""), for: .normal)
+                self.view.layoutIfNeeded()
+                
+            } else if self.lastContentOffset < currentYOffset && currentYOffset > 0 {
+                
+                self.addButtonWidthConstraint.constant = 50
+                self.addMemoButton.setTitle("", for: .normal)
+                self.view.layoutIfNeeded()
+            }
+        }
+
+        lastContentOffset = scrollView.contentOffset.y
+    }
 }
 
 // MARK: - UISearchResultsUpdating
