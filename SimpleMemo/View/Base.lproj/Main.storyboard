@@ -294,6 +294,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonView" destination="Tew-t7-rqr" id="SF3-Jz-JO0"/>
+                        <outlet property="buttonViewTrailingConstraint" destination="Ad7-cF-xej" id="CJw-Co-wlB"/>
                         <outlet property="textView" destination="7ok-vy-sYC" id="F4x-Xu-033"/>
                         <outletCollection property="colorButtons" destination="Se5-lG-NjW" collectionClass="NSMutableArray" id="21Y-Le-jO8"/>
                         <outletCollection property="colorButtons" destination="wi9-4n-Jey" collectionClass="NSMutableArray" id="7NT-Fa-wlL"/>
