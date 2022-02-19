@@ -21,6 +21,8 @@ class WriteViewController: UIViewController {
     /// 색깔 배열
     @IBOutlet var colorButtons: [UIButton]!
     
+    @IBOutlet weak var buttonViewTrailingConstraint: NSLayoutConstraint!
+    
     /// 뷰 이동을 위한 identifier
     static let identifier = "WriteViewController"
     private var textViewPlaceholder = NSLocalizedString("TextViewPlaceholder", comment: "")
@@ -46,11 +48,12 @@ class WriteViewController: UIViewController {
             title = NSLocalizedString("WriteViewEditTitle", comment: "")
             textView.text = data.bodyText
             textView.textColor = .black
+            textView.backgroundColor = UIColor(named: data.backgroundColor)
             selectedColor = data.backgroundColor
             
             for button in colorButtons.filter({ $0.titleLabel?.text == selectedColor }) {
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.darkGray.cgColor
+                button.alpha = 0
+                button.isEnabled = false
             }
         case .none:
             title = NSLocalizedString("WriteViewAddTitle", comment: "")
@@ -59,6 +62,11 @@ class WriteViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        buttonContainerAppearAnimation()
+    }
     
     // MARK: - Private
     
@@ -79,13 +87,39 @@ class WriteViewController: UIViewController {
             button.isSelected = (sender == button)
             
             if !button.isSelected {
-                button.layer.borderWidth = 0
-                button.layer.borderColor = UIColor.clear.cgColor
+
+                UIView.animate(withDuration: 1.2, delay: 0, options: .curveEaseInOut) {
+
+                    button.alpha = 1.0
+                    button.isEnabled = true
+
+                }
+                
             } else {
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.darkGray.cgColor
+                
+                UIView.animate(withDuration: 1.2, delay: 0.4, options: .curveEaseOut) {
+
+                    self.textView.backgroundColor = button.backgroundColor
+                    button.alpha = 0
+                    button.isEnabled = false
+
+                } completion: { _ in
+                    UIView.animate(withDuration: 0.2) {
+                        self.textView.textColor = .black
+                    }
+                }
             }
         }
+    }
+    
+    /// 왼쪽 화면 밖에서 화면 안으로 이동하는 애니메이션 함수
+    private func buttonContainerAppearAnimation() {
+        let animation = CASpringAnimation(keyPath: "position.x")
+        animation.damping = 7
+        animation.toValue = view.bounds.size.width / 2
+        animation.fromValue = -(view.bounds.size.width / 2)
+        animation.duration = 2.0
+        buttonView.layer.add(animation, forKey: "")
     }
     
     /// 색깔 버튼 설정
