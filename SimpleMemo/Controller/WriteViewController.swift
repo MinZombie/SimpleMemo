@@ -110,6 +110,9 @@ class WriteViewController: UIViewController {
                 }
             }
         }
+        
+        // 버튼 클릭시 키보드 올리기
+        textView.becomeFirstResponder()
     }
     
     /// 왼쪽 화면 밖에서 화면 안으로 이동하는 애니메이션 함수
