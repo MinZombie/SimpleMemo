@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A1V-ep-yoc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A1V-ep-yoc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,66 +17,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vzS-2X-PlH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vzS-2X-PlH">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="170" id="UmI-rm-6up" customClass="MainTableViewCell" customModule="SimpleMemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="170"/>
+                                        <rect key="frame" x="20" y="49.5" width="374" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UmI-rm-6up" id="uiJ-Mp-seH">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeM-Qu-EZp">
-                                                    <rect key="frame" x="16" y="8" width="382" height="154"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="170"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-cv-Lpp">
-                                                            <rect key="frame" x="16" y="16" width="350" height="21"/>
+                                                            <rect key="frame" x="16" y="16" width="342" height="21"/>
                                                             <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaB-ZW-jZy">
-                                                            <rect key="frame" x="16" y="117" width="302" height="21"/>
+                                                            <rect key="frame" x="16" y="133" width="342" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGA-Xl-BHF">
-                                                            <rect key="frame" x="334" y="111.5" width="32" height="32"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="32" id="Kdp-Xf-NHY"/>
-                                                                <constraint firstAttribute="width" constant="32" id="zCB-xZ-NmO"/>
-                                                            </constraints>
-                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="BaB-ZW-jZy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BJp-cv-Lpp" secondAttribute="bottom" constant="16" id="CmO-Ye-03u"/>
                                                         <constraint firstAttribute="trailing" secondItem="BJp-cv-Lpp" secondAttribute="trailing" constant="16" id="EOn-TM-20b"/>
-                                                        <constraint firstItem="JGA-Xl-BHF" firstAttribute="centerY" secondItem="BaB-ZW-jZy" secondAttribute="centerY" id="GiZ-sn-MwB"/>
                                                         <constraint firstAttribute="bottom" secondItem="BaB-ZW-jZy" secondAttribute="bottom" constant="16" id="Hdq-Mr-5bt"/>
-                                                        <constraint firstItem="JGA-Xl-BHF" firstAttribute="trailing" secondItem="BJp-cv-Lpp" secondAttribute="trailing" id="eZW-Pt-YfX"/>
-                                                        <constraint firstItem="JGA-Xl-BHF" firstAttribute="leading" secondItem="BaB-ZW-jZy" secondAttribute="trailing" constant="16" id="gQI-IK-c3f"/>
                                                         <constraint firstItem="BJp-cv-Lpp" firstAttribute="top" secondItem="yeM-Qu-EZp" secondAttribute="top" constant="16" id="hpK-54-p4d"/>
                                                         <constraint firstItem="BJp-cv-Lpp" firstAttribute="leading" secondItem="yeM-Qu-EZp" secondAttribute="leading" constant="16" id="ofC-le-Lua"/>
                                                         <constraint firstItem="BaB-ZW-jZy" firstAttribute="leading" secondItem="BJp-cv-Lpp" secondAttribute="leading" id="twy-zI-VFa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="BaB-ZW-jZy" secondAttribute="trailing" constant="16" id="vNF-ff-kwo"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yeM-Qu-EZp" firstAttribute="top" secondItem="uiJ-Mp-seH" secondAttribute="top" constant="8" id="Qdu-Qe-Q2E"/>
-                                                <constraint firstItem="yeM-Qu-EZp" firstAttribute="leading" secondItem="uiJ-Mp-seH" secondAttribute="leading" constant="16" id="XOb-Lr-m6K"/>
-                                                <constraint firstAttribute="bottom" secondItem="yeM-Qu-EZp" secondAttribute="bottom" constant="8" id="bMU-EL-ddK"/>
-                                                <constraint firstAttribute="trailing" secondItem="yeM-Qu-EZp" secondAttribute="trailing" constant="16" id="mQ5-nM-6GK"/>
+                                                <constraint firstItem="yeM-Qu-EZp" firstAttribute="top" secondItem="uiJ-Mp-seH" secondAttribute="top" id="Qdu-Qe-Q2E"/>
+                                                <constraint firstItem="yeM-Qu-EZp" firstAttribute="leading" secondItem="uiJ-Mp-seH" secondAttribute="leading" id="XOb-Lr-m6K"/>
+                                                <constraint firstAttribute="bottom" secondItem="yeM-Qu-EZp" secondAttribute="bottom" id="bMU-EL-ddK"/>
+                                                <constraint firstAttribute="trailing" secondItem="yeM-Qu-EZp" secondAttribute="trailing" id="mQ5-nM-6GK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bodyText" destination="BJp-cv-Lpp" id="hFc-Lx-YvJ"/>
                                             <outlet property="date" destination="BaB-ZW-jZy" id="l1M-tJ-ARB"/>
-                                            <outlet property="optionButton" destination="JGA-Xl-BHF" id="2op-ay-65r"/>
                                             <outlet property="viewContainer" destination="yeM-Qu-EZp" id="Jya-dL-gXJ"/>
                                         </connections>
                                     </tableViewCell>

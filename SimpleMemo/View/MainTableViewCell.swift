@@ -7,11 +7,6 @@
 
 import UIKit
 
-/// 메모의 옵션 버튼이 선택 됐을 때 알려주는 델리게이트
-protocol MainTableViewCellDelegate: AnyObject {
-    func didTapOptionButton(_ cell: MainTableViewCell)
-}
-
 /// 메모 리스트의 테이블 뷰 셀
 class MainTableViewCell: UITableViewCell {
     
@@ -33,23 +28,15 @@ class MainTableViewCell: UITableViewCell {
     /// 메모 내용 레이블
     @IBOutlet weak var bodyText: UILabel!
     @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var optionButton: UIButton!
     
     /// 셀 identifier
     static let identifier = "MainTableViewCell"
-    
-    /// 델리게이트
-    weak var delegate: MainTableViewCellDelegate?
-    
-    /// 몇번째 셀이 선택 되었는지 값을 전달 받는 변수
-    var index = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         setUpTableViewCell()
-        setUpContainerView()
-        setUpOptionButton()
+        //setUpContainerView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -78,12 +65,6 @@ class MainTableViewCell: UITableViewCell {
     
     // MARK: - Private
     
-    /// 셀의 optionButton 클릭 했을 때 사용하는 함수
-    @objc private func didTapOptionButton(_ sender: UIButton) {
-        delegate?.didTapOptionButton(self)
-        
-    }
-    
     /// 셀 안에 최상위 뷰 설정
     private func setUpContainerView() {
         viewContainer.layer.cornerRadius = 8
@@ -101,13 +82,5 @@ class MainTableViewCell: UITableViewCell {
         bodyText.numberOfLines = 0
         bodyText.font = Constants.Fonts.normal
         date.font = .systemFont(ofSize: 11, weight: .thin)
-    }
-    
-    /// optionButton 설정
-    private func setUpOptionButton() {
-        optionButton.setImage(Constants.Images.ellipsis, for: .normal)
-        optionButton.tintColor = Constants.Colors.content
-        optionButton.backgroundColor = .clear
-        optionButton.addTarget(self, action: #selector(didTapOptionButton(_:)), for: .touchUpInside)
     }
 }

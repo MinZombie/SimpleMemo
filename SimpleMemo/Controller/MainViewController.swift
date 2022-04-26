@@ -45,6 +45,9 @@ class MainViewController: UIViewController {
         return isActive && isEmpty
     }
     
+    /// 셀 개수
+    private var cellCount: Int = 1
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -160,14 +163,20 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.layer.masksToBounds = false
+        tableView.layer.cornerRadius = 8
+        tableView.layer.shadowOffset = CGSize(width: 1.0, height: 3.0)
+        tableView.layer.shadowOpacity = 0.3
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        tableView.layer.shadowRadius = 4
     }
     
 }
 
 // MARK: - UITableViewDataSource, Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // 검색 했을 때 셀의 갯수
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // 검색 했을 때 섹션의 갯수
         if isFiltering {
             return filteredData.count
         }
@@ -175,27 +184,51 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return viewModels.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellCount
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
         
         // 검색 했을 때 보여주는 경우
         if isFiltering {
-            cell.configure(with: filteredData[indexPath.row])
-            cell.index = indexPath.row
+            cell.configure(with: filteredData[indexPath.section])
             
         // 모든 메모 보여주는 경우
         } else {
-            cell.configure(with: viewModels[indexPath.row])
-            cell.index = indexPath.row
+            cell.configure(with: viewModels[indexPath.section])
         }
-        
-        // 셀에 있는 옵션 버튼에 대한 델리게이트
-        cell.delegate = self
         
         
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if self.isFiltering == true {
+                
+                RealmManager.shared.deleteMemo(date: self.filteredData[indexPath.section].date)
+                self.filteredData.remove(at: indexPath.section)
+                
+            } else {
+                // 홈화면에 있는 메모 리스트에서 삭제
+                RealmManager.shared.deleteMemo(date: self.viewModels[indexPath.section].date)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: WriteViewController.identifier) as! WriteViewController
+        
+        // 검색 결과창에 있는 셀이 선택 됐는지, 메인 리스트에 있는 셀이 선택 됐는지 확인
+        isFiltering == true ? (vc.viewModels = filteredData[indexPath.section]) : (vc.viewModels = viewModels[indexPath.section])
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentYOffset = scrollView.contentOffset.y
@@ -237,52 +270,4 @@ extension MainViewController: UISearchResultsUpdating {
         self.filteredData = tempArr.sorted(by: { $0.date > $1.date })
         tableView.reloadData()
     }
-}
-
-// MARK: - MainTableViewCellDelegate
-extension MainViewController: MainTableViewCellDelegate {
-    /// 셀에 있는 옵션 버튼 눌렀을 때 호출.
-    /// - Parameter cell: 선택한 셀
-    func didTapOptionButton(_ cell: MainTableViewCell) {
-        
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        /// 메모를 수정 하는 액션. WriteViewController로 이동
-        let editAction = UIAlertAction(title: NSLocalizedString("Edit", comment: ""), style: .default) { [weak self] _ in
-            let vc = self?.storyboard?.instantiateViewController(withIdentifier: WriteViewController.identifier) as! WriteViewController
-            
-            // 검색 결과창에 있는 셀이 선택 됐는지, 메인 리스트에 있는 셀이 선택 됐는지 확인
-            self?.isFiltering == true ? (vc.viewModels = self?.filteredData[cell.index]) : (vc.viewModels = self?.viewModels[cell.index])
-            self?.navigationController?.pushViewController(vc, animated: true)
-        }
-        
-        /// 메모를 삭제 하는 액션.
-        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
-            
-            guard let self = self else { return }
-            
-            // 검색해서 나온 메모를 삭제
-            if self.isFiltering == true {
-                
-                RealmManager.shared.deleteMemo(date: self.filteredData[cell.index].date)
-                self.filteredData.remove(at: cell.index)
-                
-            } else {
-                // 홈화면에 있는 메모 리스트에서 삭제
-                RealmManager.shared.deleteMemo(date: self.viewModels[cell.index].date)
-            }
-
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
-        
-        controller.addAction(editAction)
-        controller.addAction(deleteAction)
-        controller.addAction(cancelAction)
-        
-        self.present(controller, animated: true)
-    }
-    
-    
 }
